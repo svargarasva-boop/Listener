@@ -356,7 +356,25 @@
                 window.open(telegramUrl, '_blank');
             }
         }
+function shareWebsite() {
+            const shareData = {
+                title: 'СЛУШАТЕЛЬ.онлайн',
+                text: 'Иногда нужно просто выговориться. Без осуждения, советов и регистрации. Конфиденциальный сервис поддержки.',
+                url: window.location.href
+            };
 
+            // На смартфонах откроется красивое родное меню (Telegram, WhatsApp и т.д.)
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                // На ПК ссылка просто скопируется в буфер обмена
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert("Ссылка на сайт успешно скопирована! Отправьте её друзьям в мессенджерах.");
+                }).catch(() => {
+                    alert("Ссылка на сайт: " + window.location.href);
+                });
+            }
+        }
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessageToSmartAI();
