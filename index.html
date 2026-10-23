@@ -319,20 +319,23 @@
         let selectedTariffText = 'Короткий звонок (15 минут) за 15 USD'; 
 
         function selectTariff(tariffId, tariffText) {
-            document.getElementById('t1').classList.remove('active', 'thunder');
-            document.getElementById('t2').classList.remove('active', 'thunder');
-            document.getElementById('t3').classList.remove('active', 'thunder');
-            
-            selectedTariffText = tariffText;
-            const element = document.getElementById(tariffId);
-            
-            if (tariffId === 't3') {
-                element.classList.add('active', 'thunder');
-            } else {
-                element.classList.add('active');
-            }
-            document.getElementById('radio-' + tariffId).checked = true;
+    for (let i = 1; i <= 6; i++) {
+        const el = document.getElementById('t' + i);
+        if (el) el.classList.remove('active', 'thunder');
+    }
+    
+    selectedTariffText = tariffText;
+    const element = document.getElementById(tariffId);
+    
+    if (element) {
+        if (tariffId === 't6') {
+            element.classList.add('active', 'thunder');
+        } else {
+            element.classList.add('active');
         }
+        document.getElementById('radio-' + tariffId).checked = true;
+    }
+}
 
         function redirectToTelegram() {
             const message = "Здравствуйте! Я хочу заказать сессию. Выбранный тариф: " + selectedTariffText;
