@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СЛУШАТЕЛЬ.онлайн</title>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <meta property="og:title" content="СЛУШАТЕЛЬ.онлайн">
-    <meta property="og:description" content="Иногда нужно просто выговориться.">
-    <meta property="og:image" content="https://github.io">
-     <style>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <style>
+        /* Базовые стили сайта */
         body {
-            background-color: #0f172a !important;
-            color: #f1f5f9 !important;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
+
         header {
             border-bottom: 1px solid #1e293b;
-            background-color: #020617;
-            padding: 15px 20px;
+            padding: 20px;
+            background-color: #090d16;
         }
+
         .header-container {
             max-width: 1000px;
             margin: 0 auto;
@@ -32,235 +32,283 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
+            font-weight: 700;
             font-size: 20px;
-            font-weight: bold;
-            color: #818cf8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
+
         .status {
-            font-size: 14px;
-            color: #94a3b8;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 14px;
+            color: #94a3b8;
         }
+
         .status-dot {
             width: 8px;
             height: 8px;
             background-color: #10b981;
             border-radius: 50%;
             display: inline-block;
+            box-shadow: 0 0 8px #10b981;
         }
+
         main {
+            flex: 1;
             max-width: 800px;
+            width: 100%;
             margin: 0 auto;
             padding: 40px 20px;
-            flex-grow: 1;
-            width: 100%;
             box-sizing: border-box;
         }
-        .promo {
+
+        #promo-section {
             text-align: center;
             margin-bottom: 40px;
         }
-        h1 {
+
+        .promo h1 {
             font-size: 32px;
-            color: #818cf8;
-            margin-bottom: 20px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            padding: 24px;
+            border-radius: 16px;
             text-align: center;
         }
-        .features {
-            display: grid;
-            /* ЖЕСТКО ЗАДАЕМ ТРИ КОЛОНКИ В ОДИН РЯД */
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 25px;
-            background-color: #020617;
-            padding: 30px 25px;
-            border-radius: 16px;
-            border: 1px solid #1e293b;
-            /* Текст выравниваем по левому краю для аккуратности */
-            text-align: left; 
-            margin-top: 30px;
-        }
-        .features {
-            display: grid;
-            /* Жестко держим 3 колонки в один ряд, чтобы ничего не съезжало вниз */
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 25px;
-            background-color: #020617;
-            padding: 30px 20px;
-            border-radius: 16px;
-            border: 1px solid #1e293b;
-            /* Включаем выравнивание «по центру» для всего блока */
-            text-align: center; 
-            margin-top: 30px;
-        }
+
         .feature-box h3 {
-            color: #818cf8;
             margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 17px;
+            font-size: 18px;
+            color: #f1f5f9;
         }
+
         .feature-box p {
-            font-size: 13px;
             color: #94a3b8;
-            margin: 0;
+            font-size: 14px;
             line-height: 1.5;
+            margin-bottom: 0;
         }
-        .card {
-            max-width: 460px;
-            margin: 40px auto 10px auto;
-            background-color: #020617;
-            border: 1px solid #1e293b;
-            border-radius: 24px;
+
+        /* Кнопки */
+        .btn-tg {
+            display: inline-block;
+            background-color: #2563eb;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: background-color 0.2s;
+        }
+
+        .btn-tg:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-share {
+            background: none;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 40px auto 0 auto;
+            transition: all 0.2s;
+        }
+
+        .btn-share:hover {
+            border-color: #64748b;
+            color: #f1f5f9;
+            background-color: #0f172a;
+        }
+
+        footer {
+            text-align: center;
             padding: 30px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            color: #475569;
+            font-size: 13px;
+            border-top: 1px solid #1e293b;
+            margin-top: 60px;
         }
-        .tariff-option {
+
+        /* СТИЛИ ДЛЯ КАСТОМНОГО ОКНА «ПОДЕЛИТЬСЯ» НА ПК */
+        .share-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .share-modal-content {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 24px;
+            width: 90%;
+            max-width: 400px;
+            color: #f8fafc;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .share-modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
-            border: 1px solid #1e293b;
-            background-color: #0f172a;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            margin-bottom: 20px;
         }
-        .tariff-option:hover {
-            border-color: #334155;
-        }
-        .tariff-option.active {
-            border: 2px solid #818cf8;
-            background-color: rgba(129, 140, 248, 0.1);
-        }
-        .tariff-option.active.thunder {
-            border: 2px solid #ef4444;
-            background-color: rgba(239, 68, 68, 0.1);
-        }
-        .tariff-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .tariff-option input[type="radio"] {
-            cursor: pointer;
-            accent-color: #818cf8;
-            width: 18px;
-            height: 18px;
+
+        .share-modal-header h3 {
             margin: 0;
+            font-size: 18px;
+            font-weight: 600;
         }
-        .btn-test {
-            width: 100%;
-            background-color: #24a1de;
-            color: #ffffff;
-            font-weight: bold;
-            padding: 14px;
+
+        .share-modal-close {
+            background: none;
             border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s;
-            text-align: center;
-        }
-        .btn-test:hover {
-            background-color: #1d82b2;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 12px;
             color: #64748b;
-            border-top: 1px solid #1e293b;
-            background-color: #020617;
-            margin-top: auto;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
         }
+
+        .share-modal-close:hover {
+            color: #f1f5f9;
+        }
+
+        .share-modal-input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .share-modal-input-group input {
+            flex: 1;
+            background: #020617;
+            border: 1px solid #334155;
+            color: #f8fafc;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .modal-copy-btn {
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .modal-copy-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .share-modal-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            text-align: center;
+        }
+
+        .share-item {
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-item:hover {
+            color: #f1f5f9;
+        }
+
+        .share-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+
+        .share-item:hover .share-icon {
+            transform: scale(1.05);
+        }
+
+        .tg-bg { background: #0088cc; }
+        .wa-bg { background: #25d366; }
+        .gmail-bg { background: #ea4335; }
+        .vk-bg { background: #0077ff; }
+
         @media (max-width: 650px) {
-            main { padding: 20px 10px !important; }
-            h1 { font-size: 24px !important; }
-            .features { display: flex !important; flex-direction: column !important; gap: 15px !important; padding: 20px 15px !important; }
-            .feature-box { width: 100% !important; text-align: center !important; }
-            .tariff-option { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; padding: 15px !important; }
-            .tariff-left { width: 100% !important; align-items: flex-start !important; }
-            .tariff-price { align-self: flex-end !important; margin-top: -5px !important; }
-            .header-container { flex-direction: column; gap: 8px; text-align: center; }
+            .features {
+                grid-template-columns: 1fr;
+            }
+            .promo h1 {
+                font-size: 26px;
+            }
         }
-         /* Стили для кастомного окна Поделиться */
-.share-modal {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    display: flex; justify-content: center; align-items: center;
-    z-index: 9999;
-}
-.share-modal-content {
-    background: #111926;
-    border: 1px solid #2d3748;
-    border-radius: 12px;
-    padding: 20px;
-    width: 90%; max-width: 400px;
-    color: #fff;
-    font-family: sans-serif;
-}
-.share-modal-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 15px;
-}
-.share-modal-header h3 { margin: 0; font-size: 18px; }
-.share-modal-close {
-    background: none; border: none; color: #aaa;
-    font-size: 24px; cursor: pointer;
-}
-.share-modal-close:hover { color: #fff; }
-.share-modal-input-group {
-    display: flex; gap: 8px; margin-bottom: 20px;
-}
-.share-modal-input-group input {
-    flex: 1; background: #1f2937; border: 1px solid #374151;
-    color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 14px;
-}
-.modal-copy-btn {
-    background: #2563eb; color: #fff; border: none;
-    padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 14px;
-}
-.modal-copy-btn:hover { background: #1d4ed8; }
-.share-modal-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-    text-align: center;
-}
-.share-item {
-    text-decoration: none; color: #ccc; font-size: 12px;
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-}
-.share-item:hover { color: #fff; }
-.share-icon {
-    width: 45px; height: 45px; border-radius: 50%;
-    display: flex; justify-content: center; align-items: center; font-size: 20px;
-}
-.tg-bg { background: #0088cc; }
-.wa-bg { background: #25d366; }
-.gmail-bg { background: #ea4335; }
-.vk-bg { background: #0077ff; }
     </style>
 </head>
 <body>
+
     <header>
         <div class="header-container">
             <div class="logo">СЛУШАТЕЛЬ.онлайн</div>
-            <div class="status"><span class="status-dot"></span> Свободен и готов слушать</div>
+            <div class="status">
+                <span class="status-dot"></span> Свободен и готов слушать
+            </div>
         </div>
     </header>
-<main>
+
+    <main>
         <!-- Секция приветствия -->
         <div id="promo-section">
             <div class="promo">
                 <h1>Иногда нужно просто выговориться.<br>Без осуждения.</h1>
-                <p style="color: #94a3b8; font-size: 16px; line-height: 1.6; text-align: center;">Я не буду учить вас жизни, давать советы или перебивать. Я здесь для того, чтобы полностью, внимательно и конфиденциально выслушать всё, что накопилось.</p>
+                <p style="color: #94a3b8; font-size: 16px; line-height: 1.6; max-width: 600px; margin: 0 auto 30px auto;">
+                    Я не буду учить вас жизни, давать советы или перебивать. Конфиденциальный сервис поддержки, где вас действительно услышат.
+                </p>
+                <a href="https://t.me" target="_blank" class="btn-tg">Заказать сессию через Telegram</a>
             </div>
+
             <div class="features">
                 <div class="feature-box">
                     <h3>Анонимность</h3>
@@ -277,287 +325,22 @@
             </div>
         </div>
 
-        <!-- Секция оплаты -->
-        <!-- Секция оплаты -->
-        <div id="payment-section" class="card">
-            <h2 style="text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 20px;">Выберите тариф сессии</h2>
-            
-            <!-- Тариф 3 минуты -->
-            <div class="tariff-option active" id="t1" onclick="selectTariff('t1', 'Супер-короткий звонок (3 минуты) за 3 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t1" checked>
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Супер-короткий звонок (3 минуты)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Быстро сбросить напряжение</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">3 USD</span>
-            </div>
-
-            <!-- Тариф 5 минут -->
-            <div class="tariff-option" id="t2" onclick="selectTariff('t2', 'Экспресс-звонок (5 минут) за 5 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t2">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Экспресс-звонок (5 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Кратко изложить суть проблемы</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">5 USD</span>
-            </div>
-
-            <!-- Тариф 10 минут -->
-            <div class="tariff-option" id="t3" onclick="selectTariff('t3', 'Быстрый звонок (10 минут) за 10 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t3">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Быстрый звонок (10 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Выговорить самое главное</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">10 USD</span>
-            </div>
-
-            <!-- Тариф 15 минут -->
-            <div class="tariff-option" id="t4" onclick="selectTariff('t4', 'Короткий звонок (15 минут) за 15 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t4">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Короткий звонок (15 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Выпустить пар и выговориться</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">15 USD</span>
-            </div>
-
-            <!-- Тариф 30 минут -->
-            <div class="tariff-option" id="t5" onclick="selectTariff('t5', 'Стандартная сессия (30 минут) за 30 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t5">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Стандартная сессия (30 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Подробно рассказать свою историю</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">30 USD</span>
-            </div>
-
-            <!-- Тариф Громоотвод (Изменен на 10 минут, цена $50) -->
-            <div class="tariff-option" id="t6" onclick="selectTariff('t6', '⚡ ТАРИФ ГРОМООТВОД (10 мин) за 50 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t6">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block; color:#f87171;">⚡ ТАРИФ «ГРОМООТВОД» (10 мин)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Можно орать и сливать ярость (в рамках правил)</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#ef4444;">50 USD</span>
-            </div>
-
-            <button class="btn-test" onclick="redirectToTelegram()">Заказать сессию через Telegram</button>
-        </div>
-
-        <!-- Окно ИИ-ЧАТА -->
-        <div class="ai-chat-container" style="max-width: 460px; margin: 30px auto; background-color: #020617; border: 1px solid #1e293b; border-radius: 24px; padding: 20px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);">
-            <h3 style="text-align: center; margin-top: 0; color: #818cf8; font-size: 18px;">Задать вопрос ИИ-ассистенту</h3>
-            <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-bottom: 15px;">Задайте ИИ любой вопрос о тарифах, часе работы или правилах.</p>
-            
-            <div class="ai-chat-messages" id="chatMessages" style="height: 200px; overflow-y: auto; border: 1px solid #1e293b; background-color: #0f172a; border-radius: 12px; padding: 10px; margin-bottom: 10px; font-size: 14px;">
-                <div class="msg bot" style="background-color: #1e293b; color: #f1f5f9; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-right: 20px;">Здравствуйте! Я ваш ИИ-консультант. Задайте любой вопрос, я отвечу человеческим языком.</div>
-            </div>
-            
-            <div class="ai-chat-input-area" style="display: flex; gap: 8px;">
-                <input type="text" id="chatInput" class="ai-chat-input" style="flex-grow: 1; background-color: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 10px; color: #f1f5f9; font-size: 14px;" placeholder="Спросите меня о тарифах, часе работы или правилах..." onkeypress="handleKeyPress(event)">
-                <button class="ai-chat-submit" style="background-color: #818cf8; color: white; border: none; border-radius: 8px; padding: 0 15px; cursor: pointer; font-weight: bold;" onclick="sendMessageToSmartAI()">Отправить</button>
-            </div>
-        </div>
+        <!-- Кнопка Поделиться -->
+        <button class="btn-share" onclick="shareWebsite()">
+            🔗 Поделиться этим сервисом
+        </button>
     </main>
-    <!-- Блок с кнопкой Поделиться в самом низу страницы -->
-    <div style="text-align: center; margin: 20px auto 40px auto; max-width: 460px; padding: 0 20px; box-sizing: border-box;">
-        <button class="btn-test" onclick="shareWebsite()" style="background-color: #1e293b; border: 1px solid #334155; width: 100%;">🔗 Поделиться этим сервисом</button>
-    </div>
-<footer>
-        &copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.
-    </footer>
 
-    <script>
-        let selectedTariffText = 'Короткий звонок (15 минут) за 15 USD'; 
-
-        function selectTariff(tariffId, tariffText) {
-    for (let i = 1; i <= 6; i++) {
-        const el = document.getElementById('t' + i);
-        if (el) el.classList.remove('active', 'thunder');
-    }
-    
-    selectedTariffText = tariffText;
-    const element = document.getElementById(tariffId);
-    
-    if (element) {
-        if (tariffId === 't6') {
-            element.classList.add('active', 'thunder');
-        } else {
-            element.classList.add('active');
-        }
-        document.getElementById('radio-' + tariffId).checked = true;
-    }
-}
-
-        function redirectToTelegram() {
-            const message = "Здравствуйте! Я хочу заказать сессию. Выбранный тариф: " + selectedTariffText;
-            const telegramUrl = "https://t.me";
-            
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(message).then(() => {
-                    alert("Название тарифа скопировано! Пожалуйста, вставьте его в чате (Ctrl+V или долгий тап -> Вставить).");
-                    window.open(telegramUrl, '_blank');
-                }).catch(() => {
-                    window.open(telegramUrl, '_blank');
-                });
-            } else {
-                window.open(telegramUrl, '_blank');
-            }
-        }
-function shareWebsite() {
-            const shareData = {
-                title: 'СЛУШАТЕЛЬ.онлайн',
-                text: 'Иногда нужно просто выговориться. Без осуждения, советов и регистрации. Конфиденциальный сервис поддержки.',
-                url: window.location.href
-            };
-
-            // На смартфонах откроется красивое родное меню (Telegram, WhatsApp и т.д.)
-            if (navigator.share) {
-                navigator.share(shareData).catch(() => {});
-            } else {
-                // На ПК ссылка просто скопируется в буфер обмена
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert("Ссылка на сайт успешно скопирована! Отправьте её друзьям в мессенджерах.");
-                }).catch(() => {
-                    alert("Ссылка на сайт: " + window.location.href);
-                });
-            }
-        }
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessageToSmartAI();
-            }
-        }
-
-        function sendMessageToSmartAI() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim();
-            if (!text) return;
-
-            appendMessage(text, 'user');
-            input.value = '';
-
-            // Имитация обдумывания ответа
-            const chatMessages = document.getElementById('chatMessages');
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = "msg bot";
-            loadingDiv.id = "ai-loading-status";
-            loadingDiv.style = "background-color: #1e293b; color: #94a3b8; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-right: 20px;";
-            loadingDiv.innerText = "ИИ подбирает ответ...";
-            chatMessages.appendChild(loadingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            setTimeout(() => {
-                document.getElementById("ai-loading-status").remove();
-                const botResponse = generateLocalAIResponse(text);
-                appendMessage(botResponse, 'bot');
-            }, 500);
-        }
-
-        function appendMessage(text, sender) {
-            const chatMessages = document.getElementById('chatMessages');
-            const msgDiv = document.createElement('div');
-            msgDiv.className = "msg " + sender;
-            msgDiv.style = sender === 'user' 
-                ? "background-color: #818cf8; color: #ffffff; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-left: 20px; text-align: right;" 
-                : "background-color: #1e293b; color: #f1f5f9; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-right: 20px;";
-            msgDiv.innerText = text;
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Умный локальный разборщик вопросов (работает в Блокноте без интернета и серверов)
-        function generateLocalAIResponse(input) {
-            const query = input.toLowerCase();
-
-            // Вопросы про время: 1 час, часовая сессия, 60 минут
-            if (query.includes('час') || query.includes('60 мин') || query.includes('длинн') || query.includes('дольше')) {
-                return "Да, вы можете заказать сессию на 1 час или даже дольше. На сайте указаны базовые тарифы до 30 минут, но индивидуальное время мы легко согласуем. Нажмите на синюю кнопку, перейдите в Telegram, и мы подберем удобный для вас слот.";
-            }
-            // Вопросы про цены и тарифную сетку
-            if (query.includes('тариф') || query.includes('цен') || query.includes('сколько стоит') || query.includes('стоимость') || query.includes('деньг') || query.includes('плат')) {
-                return "У нас действуют три фиксированных тарифа: Короткий звонок (15 минут) за 15 USD, Стандартная сессия (30 минут) за 30 USD, и специальный тариф «Громоотвод» за 50 USD. Выбирайте любой прямо на странице!";
-            }
-            // Вопросы про анонимность и безопасность данных
-            if (query.includes('аноним') || query.includes('секрет') || query.includes('данные') || query.includes('узнает') || query.includes('конфиденц') || query.includes('безопасн')) {
-                return "Ваша анонимность — наш главный приоритет. Сервис не требует никаких регистраций, указания имен или телефонов. Диалог идет напрямую в Telegram, переписка нигде не сохраняется и не передается третьим лицам.";
-            }
-            // Вопросы конкретно про тариф Громоотвод
-            if (query.includes('громоотвод') || query.includes('орать') || query.includes('злить') || query.includes('руга') || query.includes('крича') || query.includes('мат')) {
-                return "Тариф «Громоотвод» за 50 USD создан как раз для того, чтобы выплеснуть сильные эмоции. На этой сессии вам разрешено кричать, плакать, ругаться и сливать злость. Слушатель примет любой ваш шторм без осуждения.";
-            }
-            // Вопросы про начало работы и процедуру заказа
-            if (query.includes('как заказать') || query.includes('как начать') || query.includes('купить') || query.includes('заказ') || query.includes('кнопк')) {
-                return "Всё просто: кликните по нужному тарифу в карточке выше (он выделится рамкой), а затем нажмите большую голубую кнопку «Заказать сессию через Telegram». Название тарифа скопируется, и вы перейдете в чат.";
-            }
-            // Вопросы о сущности бота
-            if (query.includes('кто ты') || query.includes('ты человек') || query.includes('бот') || query.includes('робот')) {
-                return "Я — текстовый ассистент сайта, помогающий сориентироваться в правилах. Но созваниваться и общаться вы будете с живым, понимающим человеком — вашим Слушателем, который не станет вас перебивать или учить жизни.";
-            }
-            // Вопросы про правила сервиса
-            if (query.includes('правил') || query.includes('можно') || query.includes('нельзя') || query.includes('ограничен')) {
-                return "Главное правило — конфиденциальность и свобода выражения чувств. Вы можете говорить о чем угодно. Единственное ограничение — на тарифе «Громоотвод» нельзя переходить на прямые угрозы или личные оскорбления самого Слушателя.";
-            }
-            // Приветствия
-            if (query.includes('привет') || query.includes('здравствуй') || query.includes('добрый день') || query.includes('ку')) {
-                return "Здравствуйте! Я ваш линейный помощник. Спросите меня о ценах, анонимности, длительности сессий или о том, как устроен «Громоотвод».";
-            }
-            // Благодарность
-            if (query.includes('спасибо') || query.includes('благодар') || query.includes('понятно') || query.includes('хорошо')) {
-                return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше и переходите в чат.";
-            }
-
-            // Текст, если клиент спросил что-то совсем нестандартное
-            return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите синюю кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
-        }
-        <!-- Собственное окно «Поделиться» для ПК -->
-<div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
-    <div class="share-modal-content">
-        <div class="share-modal-header">
-            <h3>Поделиться сервисом</h3>
-            <button class="share-modal-close" onclick="closeShareModal()">&times;</button>
-        </div>
-        <div class="share-modal-input-group">
-            <input type="text" id="shareLinkInput" readonly value="https://github.io">
-            <button class="modal-copy-btn" onclick="copyShareLink()">Копировать</button>
-        </div>
-        <div class="share-modal-grid">
-            <!-- Telegram -->
-            <a href="https://t.me/share/url?url=https://github.io&text=%D0%A1%D0%9B%D0%A3%D0%A8%D0%90%D0%A2%D0%95%D0%9B%D0%AC.%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%20%E2%80%94%20%D0%98%D0%BD%D0%BE%D0%B3%D0%B4%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%20%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C%D1%81%D1%8F." target="_blank" class="share-item">
-                <div class="share-icon tg-bg">✈️</div>
-                <span>Telegram</span>
-            </a>
-            <!-- WhatsApp -->
-            <a href="https://api.whatsapp.com/send?text=%D0%A1%D0%9B%D0%A3%D0%A8%D0%90%D0%A2%D0%95%D0%9B%D0%AC.%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%20%E2%80%94%20%D0%98%D0%BD%D0%BE%D0%B3%D0%B4%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%20%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C%D1%81%D1%8F.%20https://github.io" target="_blank" class="share-item">
-                <div class="share-icon wa-bg">💬</div>
-                <span>WhatsApp</span>
-            </a>
-            <!-- Gmail -->
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&su=%D0%A1%D0%9B%D0%A3%D0%A8%D0%90%D0%A2%D0%95%D0%9B%D0%AC.%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD&body=%D0%98%D0%BD%D0%BE%D0%B3%D0%B4%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%20%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C%D1%81%D1%8F.%20%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D2%8A%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B8%3A%20https://github.io" target="_blank" class="share-item">
-                <div class="share-icon gmail-bg">✉️</div>
-                <span>Gmail</span>
-            </a>
-            <!-- VK -->
-            <a href="https://vk.com/share.php?url=https://github.io&title=%D0%A1%D0%9B%D0%A3%D0%A8%D0%90%D0%A2%D0%95%D0%9B%D0%AC.%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD" target="_blank" class="share-item">
-                <div class="share-icon vk-bg">💙</div>
-                <span>ВКонтакте</span>
-            </a>
-        </div>
-    </div>
-</div>
-    </script>
-</body>
-</html>
+    <!-- Собственное окно «Поделиться» для ПК -->
+    <div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
+        <div class="share-modal-content">
+            <div class="share-modal-header">
+                <h3>Поделиться сервисом</h3>
+                <button class="share-modal-close" onclick="closeShareModal()">&times;</button>
+            </div>
+            <div class="share-modal-input-group">
+                <input type="text" id="shareLinkInput" readonly value="https://github.io">
+                <button class="modal-copy-btn" onclick="copyShareLink()">Копировать</button>
+            </div>
+            <div class="share-modal-grid">
+                <!-- Telegram -->
