@@ -68,7 +68,8 @@
         }
         .features {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); 
+            /* Умная сетка: на ПК будет 3 колонки, а на смартфонах блоки красиво встанут друг под друга */
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
             gap: 25px;
             background-color: #020617;
             padding: 30px 20px;
@@ -149,6 +150,71 @@
         }
         .btn-test:hover {
             background-color: #1d82b2;
+        }
+        .ai-chat-container {
+            max-width: 460px;
+            margin: 30px auto;
+            background-color: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        .ai-chat-messages {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #1e293b;
+            background-color: #0f172a;
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .msg {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            line-height: 1.4;
+        }
+        .msg.bot {
+            background-color: #1e293b;
+            color: #f1f5f9;
+            margin-right: 20px;
+            text-align: left;
+        }
+        .msg.user {
+            background-color: #818cf8;
+            color: #ffffff;
+            margin-left: 20px;
+            text-align: right;
+        }
+        .ai-chat-input-area {
+            display: flex;
+            gap: 8px;
+        }
+        .ai-chat-input {
+            flex-grow: 1;
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 10px;
+            color: #f1f5f9;
+            font-size: 14px;
+        }
+        .ai-chat-input:focus {
+            outline: 1px solid #818cf8;
+        }
+        .ai-chat-submit {
+            background-color: #818cf8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .ai-chat-submit:hover {
+            background-color: #6366f1;
         }
         footer {
             text-align: center;
@@ -379,7 +445,7 @@
             const query = input.toLowerCase();
 
             if (query.includes('час') || query.includes('60 мин') || query.includes('длинн') || query.includes('дольше')) {
-                return "Да, вы можете заказать сессию на 1 час или даже дольше. На сайте указаны базовые тарифы до 30 минут, но индивидуальное время мы легко согласуем. Перейдите в Telegram, и мы подберем удобный для вас слот.";
+                return "Да, вы можете заказать сессию на 1 час или even дольше. На сайте указаны базовые тарифы до 30 минут, но индивидуальное время мы легко согласуем. Перейдите в Telegram, и мы подберем удобный для вас слот.";
             }
             if (query.includes('тариф') || query.includes('цен') || query.includes('сколько стоит') || query.includes('стоимость') || query.includes('деньг') || query.includes('плат')) {
                 return "У нас действуют гибкие тарифы: от коротких звонков по 3, 5, 10 и 15 минут до полноценных сессий на 30 минут. Также есть специальный тариф «Громоотвод» за 50 USD. Выбирайте любой прямо на странице!";
@@ -409,7 +475,6 @@
             return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
         }
 
-        // ОРИГИНАЛЬНАЯ НАТИВНАЯ ФУНКЦИЯ ШЕРИНГА
         function shareWebsite() {
             if (navigator.share) {
                 navigator.share({
