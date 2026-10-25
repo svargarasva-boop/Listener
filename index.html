@@ -180,7 +180,6 @@
         <button onclick="shareWebsite()" style="background: none; border: 1px solid #1e293b; color: #94a3b8; padding: 12px 24px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin: 40px auto 0 auto; font-size: 14px; font-weight: 500; transition: all 0.2s;">🔗 Поделиться этим сервисом</button>
     </main>
 
-    <!-- Исправленное модальное окно "Поделиться" -->
     <div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
         <div class="share-modal-content">
             <div class="share-modal-header">
@@ -198,7 +197,6 @@
             </div>
         </div>
     </div>
-
     <footer>&copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.</footer>
     <script>
         // Инициализация базовых переменных состояния
@@ -369,11 +367,6 @@
             if (instaBtn) {
                 instaBtn.onclick = (e) => {
                     e.preventDefault();
-        window.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                closeShareModal();
-            }
-        });
     </script>
 </body>
 </html>
