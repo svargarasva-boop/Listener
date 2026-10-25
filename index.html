@@ -231,7 +231,7 @@
             margin-top: auto;
         }
 
-        /* УЛУЧШЕННЫЕ СТИЛИ ОКНА «ПОДЕЛИТЬСЯ» БЕЗ ТЕКСТОВОГО ПОЛЯ С QR-КОДОМ */
+        /* СТИЛИ ОРИГИНАЛЬНОГО ОКНА ШЕРИНГА С ОРИГИНАЛЬНЫМИ ИКОНКАМИ */
         .share-modal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -261,13 +261,12 @@
         }
         .share-modal-close:hover { color: #f1f5f9; }
         
-        /* Блок QR-кода */
         .qr-container {
             background: #ffffff;
             padding: 15px;
             border-radius: 16px;
-            width: 160px;
-            height: 160px;
+            width: 150px;
+            height: 150px;
             margin: 0 auto 20px auto;
             display: flex;
             justify-content: center;
@@ -278,11 +277,9 @@
             width: 100%;
             height: 100%;
         }
-
         .modal-action-btn-container {
             margin-bottom: 25px;
         }
-
         .share-modal-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; box-sizing: border-box;
             margin-top: 15px;
@@ -302,7 +299,6 @@
         }
         .share-item:hover .share-icon { transform: scale(1.06); filter: brightness(1.1); }
         
-        /* Цвета брендов */
         .tg-bg { background: #26A5E4; }
         .wa-bg { background: #25D366; }
         .insta-bg { background: #E1306C; }
@@ -310,6 +306,7 @@
         .x-bg { background: #111111; border: 1px solid #334155; }
         .vk-bg { background: #0077FF; }
 
+        /* ЖЕСТКОЕ ИСПРАВЛЕНИЕ ОТОБРАЖЕНИЯ ПРЕИМУЩЕСТВ НА СМАРТФОНАХ */
         @media (max-width: 768px) {
             .features {
                 grid-template-columns: 1fr !important;
@@ -329,7 +326,7 @@
             <div class="status"><span class="status-dot"></span> Свободен и готов слушать</div>
         </div>
     </header>
-<main>
+    <main>
         <!-- Секция приветствия -->
         <div id="promo-section">
             <div class="promo">
@@ -367,7 +364,6 @@
                 </div>
                 <span style="font-size:20px; font-weight:bold; color:#818cf8;">3 USD</span>
             </div>
-
             <!-- Тариф 5 минут -->
             <div class="tariff-option" id="t2" onclick="selectTariff('t2', 'Экспресс-звонок (5 минут) за 5 USD')">
                 <div class="tariff-left">
@@ -432,17 +428,17 @@
         </div>
 
         <!-- Окно ИИ-ЧАТА -->
-        <div class="ai-chat-container" style="max-width: 460px; margin: 30px auto; background-color: #020617; border: 1px solid #1e293b; border-radius: 24px; padding: 20px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);">
+        <div class="ai-chat-container">
             <h3 style="text-align: center; margin-top: 0; color: #818cf8; font-size: 18px;">Задать вопрос ИИ-ассистенту</h3>
             <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-bottom: 15px;">Задайте ИИ любой вопрос о тарифах, часе работы или правилах.</p>
             
-            <div class="ai-chat-messages" id="chatMessages" style="height: 200px; overflow-y: auto; border: 1px solid #1e293b; background-color: #0f172a; border-radius: 12px; padding: 10px; margin-bottom: 10px; font-size: 14px;">
-                <div class="msg bot" style="background-color: #1e293b; color: #f1f5f9; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-right: 20px;">Здравствуйте! Я ваш ИИ-консультант. Задайте любой вопрос, я отвечу человеческим языком.</div>
+            <div class="ai-chat-messages" id="chatMessages">
+                <div class="msg bot">Здравствуйте! Я ваш ИИ-консультант. Задайте любой вопрос, я отвечу человеческим языком.</div>
             </div>
             
-            <div class="ai-chat-input-area" style="display: flex; gap: 8px;">
-                <input type="text" id="chatInput" class="ai-chat-input" style="flex-grow: 1; background-color: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 10px; color: #f1f5f9; font-size: 14px;" placeholder="Спросите меня о тарифах, часе работы или правилах..." onkeypress="handleKeyPress(event)">
-                <button class="ai-chat-submit" style="background-color: #818cf8; color: white; border: none; border-radius: 8px; padding: 0 15px; cursor: pointer; font-weight: bold;" onclick="sendMessageToSmartAI()">Отправить</button>
+            <div class="ai-chat-input-area">
+                <input type="text" id="chatInput" class="ai-chat-input" placeholder="Спросите меня о тарифах, часе работы или правилах..." onkeypress="handleKeyPress(event)">
+                <button class="ai-chat-submit" onclick="sendMessageToSmartAI()">Отправить</button>
             </div>
         </div>
 
@@ -460,12 +456,12 @@
                 <button class="share-modal-close" onclick="closeShareModal()">&times;</button>
             </div>
             
-            <!-- Контейнер для QR-кода -->
+            <!-- Контейнер для автоматического QR-кода -->
             <div class="qr-container">
                 <img id="modalQrCodeImg" src="" alt="QR-код сайта">
             </div>
 
-            <!-- Кнопка копирования ссылки -->
+            <!-- Синяя кнопка копирования -->
             <div class="modal-action-btn-container">
                 <button class="modal-copy-btn" onclick="copyShareLink()" style="width: 100%; padding: 12px; border-radius: 12px;">Копировать ссылку на сайт</button>
             </div>
@@ -488,6 +484,33 @@
                 <!-- Instagram -->
                 <a href="https://instagram.com" target="_blank" class="share-item">
                     <div class="share-icon insta-bg">
+                        <img src="https://wikimedia.org" alt="Insta">
+                    </div>
+                    <span>Instagram</span>
+                </a>
+                <!-- Viber -->
+                <a href="#" id="share-link-viber" target="_blank" class="share-item">
+                    <div class="share-icon viber-bg">
+                        <img src="https://wikimedia.org" alt="Viber">
+                    </div>
+                    <span>Viber</span>
+                </a>
+                <!-- X (Twitter) -->
+                <a href="#" id="share-link-x" target="_blank" class="share-item">
+                    <div class="share-icon x-bg">
+                        <img src="https://wikimedia.org" alt="X" style="filter: invert(1);">
+                    </div>
+                    <span>X</span>
+                </a>
+                <!-- ВКонтакте -->
+                <a href="#" id="share-link-vk" target="_blank" class="share-item">
+                    <div class="share-icon vk-bg">
+                        <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: #ffffff;"><path d="M15.05 22c7.23 0 11.23-4.96 11.23-11.23 0-.17 0-.34-.01-.51A8.03 8.03 0 0 0 28.3 8.2a7.88 7.88 0 0 1-2.26.62 3.94 3.94 0 0 0 1.73-2.18 7.87 7.87 0 0 1-2.5 1 3.94 3.94 0 0 0-6.72 3.59 11.19 11.19 0 0 1-8.13-5.63 3.94 3.94 0 0 0 1.22 5.25 3.91 3.94 0 0 1-1.78-.49v.05a3.94 3.94 0 0 0 3.16 3.86 3.93 3.93 0 0 1-1.78.07 3.94 3.94 0 0 0 3.68 2.73A7.91 7.91 0 0 1 2 18.55a11.16 11.16 0 0 0 6.05 1.77c7.25 0 11.23-6 11.23-11.23v-.51A8.04 8.04 0 0 0 22 6.5a7.89 7.88 0 0 1-2.27.62A3.94 3.94 0 0 0 21.46 5a7.86 7.86 0 0 1-2.49.95 3.94 3.94 0 0 0-6.72 3.59A11.15 11.15 0 0 1 4.12 3.9a3.94 3.94 0 0 0 1.22 5.25 3.91 3.91 0 0 1-1.78-.49v.05A3.94 3.94 0 0 0 6.72 12.6a3.93 3.93 0 0 1-1.78.07 3.94 3.94 0 0 0 3.68 2.73A7.9 7.9 0 0 1 2 18.12a11.13 11.13 0 0 0 6.05 1.77c4.61 0 8.65-2.43 10.9-6.07l-3.9 6.18z"/></svg>
+                    </div>
+                    <span>ВКонтакте</span>
+                </a>
+            </div>
+        </div>
     <footer>
         &copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.
     </footer>
@@ -601,13 +624,12 @@
                 return "Здравствуйте! Я ваш линейный помощник. Спросите меня о ценах, анонимности, длительности сессий или о том, как устроен «Громоотвод».";
             }
             if (query.includes('спасибо') || query.includes('благодар') || query.includes('понятно') || query.includes('хорошо')) {
-                return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше and переходите в чат.";
+                return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше и переходите в чат.";
             }
 
             return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
         }
 
-        // УЛУЧШЕННОЕ ОТКРЫТИЕ ОКНА ШЕРИНГА (УБРАНО ТЕКСТОВОЕ ПОЛЕ + ДОБАВЛЕН QR)
         function shareWebsite() {
             const currentUrl = window.location.href;
             const shareText = "Твой Слушатель — Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.";
@@ -625,10 +647,10 @@
                 const qrImg = document.getElementById('modalQrCodeImg');
                 
                 if (modal && qrImg) {
-                    // На лету генерируем красивый и четкий QR-код для текущей ссылки
+                    // Генерация QR-кода на лету под реальную ссылку
                     qrImg.src = "https://qrserver.com" + encodeURIComponent(currentUrl);
                     
-                    // Обновляем ссылки мессенджеров на лету под реальный URL
+                    // Полноценные рабочие пути для шеринга в мессенджерах
                     document.getElementById('share-link-tg').href = "https://t.me" + encodeURIComponent(currentUrl) + "&text=" + encodeURIComponent(shareText);
                     document.getElementById('share-link-wa').href = "https://whatsapp.com" + encodeURIComponent(shareText + " " + currentUrl);
                     document.getElementById('share-link-viber').href = "viber://forward?text=" + encodeURIComponent(shareText + " — " + currentUrl);
@@ -642,24 +664,8 @@
 
         function closeShareModal() {
             const modal = document.getElementById('customShareModal');
-        function closeShareModal() {
-            const modal = document.getElementById('customShareModal');
             if (modal) modal.style.display = 'none';
         }
 
         function copyShareLink() {
             const currentUrl = window.location.href;
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(currentUrl).then(() => {
-                    const btn = document.querySelector('.modal-copy-btn');
-                    if (btn) {
-                        btn.textContent = 'Ссылка скопирована!';
-                        setTimeout(() => { btn.textContent = 'Копировать ссылку на сайт'; }, 2000);
-                    }
-                });
-            }
-        }
-    </script>
-</body>
-</html>
-
