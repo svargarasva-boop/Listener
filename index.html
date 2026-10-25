@@ -68,27 +68,12 @@
         }
         .features {
             display: grid;
-            /* ЖЕСТКО ЗАДАЕМ ТРИ КОЛОНКИ В ОДИН РЯД */
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 25px;
-            background-color: #020617;
-            padding: 30px 25px;
-            border-radius: 16px;
-            border: 1px solid #1e293b;
-            /* Текст выравниваем по левому краю для аккуратности */
-            text-align: left; 
-            margin-top: 30px;
-        }
-        .features {
-            display: grid;
-            /* Жестко держим 3 колонки в один ряд, чтобы ничего не съезжало вниз */
             grid-template-columns: repeat(3, 1fr); 
             gap: 25px;
             background-color: #020617;
             padding: 30px 20px;
             border-radius: 16px;
             border: 1px solid #1e293b;
-            /* Включаем выравнивание «по центру» для всего блока */
             text-align: center; 
             margin-top: 30px;
         }
@@ -207,7 +192,6 @@
         </div>
 
         <!-- Секция оплаты -->
-        <!-- Секция оплаты -->
         <div id="payment-section" class="card">
             <h2 style="text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 20px;">Выберите тариф сессии</h2>
             
@@ -271,7 +255,7 @@
                 <span style="font-size:20px; font-weight:bold; color:#818cf8;">30 USD</span>
             </div>
 
-            <!-- Тариф Громоотвод (Изменен на 10 минут, цена $50) -->
+            <!-- Тариф Громоотвод -->
             <div class="tariff-option" id="t6" onclick="selectTariff('t6', '⚡ ТАРИФ ГРОМООТВОД (10 мин) за 50 USD')">
                 <div class="tariff-left">
                     <input type="radio" name="time-tariff" id="radio-t6">
@@ -300,23 +284,31 @@
                 <button class="ai-chat-submit" style="background-color: #818cf8; color: white; border: none; border-radius: 8px; padding: 0 15px; cursor: pointer; font-weight: bold;" onclick="sendMessageToSmartAI()">Отправить</button>
             </div>
         </div>
+
+        <!-- Оригинальная кнопка Поделиться -->
+        <button onclick="shareWebsite()" style="background: none; border: 1px solid #1e293b; color: #94a3b8; padding: 12px 24px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin: 40px auto 0 auto; font-size: 14px; font-weight: 500; transition: all 0.2s;">
+            🔗 Поделиться этим сервисом
+        </button>
     </main>
-<footer>
+    <footer>
         &copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.
     </footer>
 
     <script>
-        let selectedTariffText = 'Короткий звонок (15 минут) за 15 USD'; 
+        let selectedTariffText = 'Супер-короткий звонок (3 минуты) за 3 USD'; 
 
         function selectTariff(tariffId, tariffText) {
             document.getElementById('t1').classList.remove('active', 'thunder');
             document.getElementById('t2').classList.remove('active', 'thunder');
             document.getElementById('t3').classList.remove('active', 'thunder');
+            document.getElementById('t4').classList.remove('active', 'thunder');
+            document.getElementById('t5').classList.remove('active', 'thunder');
+            document.getElementById('t6').classList.remove('active', 'thunder');
             
             selectedTariffText = tariffText;
             const element = document.getElementById(tariffId);
             
-            if (tariffId === 't3') {
+            if (tariffId === 't6') {
                 element.classList.add('active', 'thunder');
             } else {
                 element.classList.add('active');
@@ -354,7 +346,6 @@
             appendMessage(text, 'user');
             input.value = '';
 
-            // Имитация обдумывания ответа
             const chatMessages = document.getElementById('chatMessages');
             const loadingDiv = document.createElement('div');
             loadingDiv.className = "msg bot";
@@ -365,7 +356,8 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
             setTimeout(() => {
-                document.getElementById("ai-loading-status").remove();
+                const statusEl = document.getElementById("ai-loading-status");
+                if (statusEl) statusEl.remove();
                 const botResponse = generateLocalAIResponse(text);
                 appendMessage(botResponse, 'bot');
             }, 500);
@@ -383,262 +375,51 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Твой Слушатель — Сервис конфиденциальной поддержки</title>
-    <!-- Подключение нашей иконки, манифеста и базовых стилей -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="manifest" href="manifest.json">
-    <style>
-        body {
-            background-color: #0f172a !important;
-            color: #f1f5f9 !important;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh;
-        }
-        header { border-bottom: 1px solid #1e293b; background-color: #020617; padding: 15px 20px; }
-        .header-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 20px; font-weight: bold; color: #818cf8; text-transform: uppercase; letter-spacing: 1px; }
-        .status { font-size: 14px; color: #94a3b8; display: flex; align-items: center; gap: 8px; }
-        .status-dot { width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; display: inline-block; }
-        main { max-width: 800px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; width: 100%; box-sizing: border-box; }
-        .promo { text-align: center; margin-bottom: 40px; }
-        h1 { font-size: 32px; color: #818cf8; margin-bottom: 20px; text-align: center; }
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; background-color: #020617; padding: 30px 20px; border-radius: 16px; border: 1px solid #1e293b; text-align: center; margin-top: 30px; }
-        .feature-box h3 { color: #818cf8; margin-top: 0; margin-bottom: 10px; font-size: 17px; }
-        .feature-box p { font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.5; }
-        .card { max-width: 460px; margin: 40px auto 10px auto; background-color: #020617; border: 1px solid #1e293b; border-radius: 24px; padding: 30px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); box-sizing: border-box; }
-        .tariff-option { display: flex; justify-content: space-between; align-items: center; padding: 15px; border: 1px solid #1e293b; background-color: #0f172a; border-radius: 12px; margin-bottom: 15px; cursor: pointer; transition: all 0.2s ease; gap: 15px; }
-        .tariff-option:hover { border-color: #334155; }
-        .tariff-option.active { border: 2px solid #818cf8; background-color: rgba(129, 140, 248, 0.1); }
-        .tariff-option.active.thunder { border: 2px solid #ef4444; background-color: rgba(239, 68, 68, 0.1); }
-        .tariff-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
-        .tariff-text-block { display: flex; flex-direction: column; gap: 4px; text-align: left; }
-        .tariff-option input[type="radio"] { cursor: pointer; accent-color: #818cf8; width: 18px; height: 18px; margin: 0; flex-shrink: 0; }
-        .tariff-price { font-size: 20px; font-weight: bold; color: #818cf8; flex-shrink: 0; }
-        .tariff-price.red { color: #ef4444; }
-        .btn-test { width: 100%; background-color: #24a1de; color: #ffffff; font-weight: bold; padding: 14px; border: none; border-radius: 12px; font-size: 16px; cursor: pointer; margin-top: 10px; transition: background 0.2s; text-align: center; }
-        .btn-test:hover { background-color: #1d82b2; }
-        .ai-chat-container { max-width: 460px; margin: 30px auto; background-color: #020617; border: 1px solid #1e293b; border-radius: 24px; padding: 20px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); box-sizing: border-box; }
-        .ai-chat-messages { height: 200px; overflow-y: auto; border: 1px solid #1e293b; background-color: #0f172a; border-radius: 12px; padding: 10px; margin-bottom: 10px; font-size: 14px; }
-        .msg { margin-bottom: 10px; padding: 8px 12px; border-radius: 8px; line-height: 1.4; }
-        .msg.bot { background-color: #1e293b; color: #f1f5f9; margin-right: 20px; }
-        .msg.user { background-color: #818cf8; color: #ffffff; margin-left: 20px; text-align: right; }
-        .ai-chat-input-area { display: flex; gap: 8px; }
-        .ai-chat-input { flex-grow: 1; background-color: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 10px; color: #f1f5f9; font-size: 14px; min-width: 0; }
-        .ai-chat-submit { background-color: #818cf8; color: white; border: none; border-radius: 8px; padding: 0 15px; cursor: pointer; font-weight: bold; flex-shrink: 0; }
-        footer { text-align: center; padding: 20px; font-size: 12px; color: #64748b; border-top: 1px solid #1e293b; background-color: #020617; margin-top: auto; }
+        function generateLocalAIResponse(input) {
+            const query = input.toLowerCase();
 
-        @media (max-width: 650px) {
-            main { padding: 20px 10px !important; }
-            h1 { font-size: 24px !important; }
-            .features { display: flex !important; flex-direction: column !important; gap: 15px !important; padding: 20px 15px !important; }
-            .feature-box { width: 100% !important; text-align: center !important; }
-            .tariff-option { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; padding: 15px !important; }
-            .tariff-left { width: 100% !important; align-items: flex-start !important; }
-            .tariff-price { align-self: flex-end !important; margin-top: -5px !important; }
-            .header-container { flex-direction: column; gap: 8px; text-align: center; }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="header-container">
-            <div class="logo">СЛУШАТЕЛЬ.онлайн</div>
-            <div class="status"><span class="status-dot"></span> Свободен и готов слушать</div>
-        </div>
-    </header>
-
-    <main>
-        <div id="promo-section">
-            <div class="promo">
-                <h1>Иногда нужно просто выговориться.<br>Без осуждения.</h1>
-                <p style="color: #94a3b8; font-size: 16px; line-height: 1.6; text-align: center; margin: 0 auto; max-width: 650px;">Я не буду учить вас жизни, давать советы или перебивать. Я здесь для того, чтобы полностью, внимательно и конфиденциально выслушать всё, что накопилось.</p>
-            </div>
-            <div class="features">
-                <div class="feature-box">
-                    <h3>Анонимность</h3>
-                    <p>Без регистрации и указания ваших реальных данных.</p>
-                </div>
-                <div class="feature-box">
-                    <h3>Любые эмоции</h3>
-                    <p>Вы можете злиться, плакать, ругаться или просто молчать.</p>
-                </div>
-                <div class="feature-box">
-                    <h3>Конфиденциально</h3>
-                    <p>Поток идет напрямую, разговор нигде не сохраняется.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="payment-section" class="card">
-            <h2 style="text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 20px; color: #818cf8;">Выберите тариф сессии</h2>
-            
-            <div class="tariff-option active" id="t1" onclick="selectTariff('t1', 'Супер-короткий звонок (3 минуты) за 3 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t1" checked>
-                    <div class="tariff-text-block">
-                        <strong>Супер-короткий звонок (3 минуты)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Быстро сбросить напряжение</span>
-                    </div>
-                </div>
-                <span class="tariff-price">3 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t2" onclick="selectTariff('t2', 'Экспресс-звонок (5 минут) за 5 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t2">
-                    <div class="tariff-text-block">
-                        <strong>Экспресс-звонок (5 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Кратко изложить суть проблемы</span>
-                    </div>
-                </div>
-                <span class="tariff-price">5 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t3" onclick="selectTariff('t3', 'Быстрый звонок (10 минут) за 10 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t3">
-                    <div class="tariff-text-block">
-                        <strong>Быстрый звонок (10 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Выговорить самое главное</span>
-                    </div>
-                </div>
-                <span class="tariff-price">10 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t4" onclick="selectTariff('t4', 'Короткий звонок (15 минут) за 15 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t4">
-                    <div class="tariff-text-block">
-                        <strong>Короткий звонок (15 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Выпустить пар и выговориться</span>
-                    </div>
-                </div>
-                <span class="tariff-price">15 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t5" onclick="selectTariff('t5', 'Стандартная сессия (30 минут) за 30 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t5">
-                    <div class="tariff-text-block">
-                        <strong>Стандартная сессия (30 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Подробно рассказать свою историю</span>
-                    </div>
-                </div>
-                <span class="tariff-price">30 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t6" onclick="selectTariff('t6', '⚡ ТАРИФ ГРОМООТВОД (10 мин) за 50 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t6">
-                    <div class="tariff-text-block">
-                        <strong style="color:#f87171;">⚡ ТАРИФ «ГРОМООТВОД» (10 мин)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Можно орать и сливать ярость (в рамках правил)</span>
-                    </div>
-                </div>
-                <span class="tariff-price red">50 USD</span>
-            </div>
-
-            <button class="btn-test" onclick="redirectToTelegram()">Заказать сессию через Telegram</button>
-        </div>
-        <div class="ai-chat-container">
-            <h3 style="text-align: center; margin-top: 0; color: #818cf8; font-size: 18px;">Задать вопрос ИИ-ассистенту</h3>
-            <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-bottom: 15px;">Задайте ИИ любой вопрос о тарифах, часе работы или правилах.</p>
-            <div class="ai-chat-messages" id="chatMessages">
-                <div class="msg bot">Здравствуйте! Я ваш ИИ-консультант. Задайте любой вопрос, я отвечу человеческим языком.</div>
-            </div>
-            <div class="ai-chat-input-area">
-                <input type="text" id="chatInput" class="ai-chat-input" placeholder="Спросите меня о тарифах, часе работы или правилах..." onkeypress="handleKeyPress(event)">
-                <button class="ai-chat-submit" onclick="sendMessageToSmartAI()">Отправить</button>
-            </div>
-        </div>
-    </main>
-
-    <div style="text-align: center; margin: 20px auto 40px auto; max-width: 460px; padding: 0 20px; box-sizing: border-box;">
-        <button class="btn-test" onclick="shareWebsite()" style="background-color: #1e293b; border: 1px solid #334155; width: 100%;">🔗 Поделиться этим сервисом</button>
-    </div>
-
-    <footer>&copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.</footer>
-
-    <script>
-        let selectedTariffText = 'Супер-короткий звонок (3 минуты) за 3 USD'; 
-        
-        function selectTariff(tId, tText) {
-            for(let i=1; i<=6; i++) { 
-                const el = document.getElementById('t'+i);
-                if (el) el.classList.remove('active', 'thunder'); 
+            if (query.includes('час') || query.includes('60 мин') || query.includes('длинн') || query.includes('дольше')) {
+                return "Да, вы можете заказать сессию на 1 час или даже дольше. На сайте указаны базовые тарифы до 30 минут, но индивидуальное время мы легко согласуем. Перейдите в Telegram, и мы подберем удобный для вас слот.";
             }
-            selectedTariffText = tText;
-            const el = document.getElementById(tId);
-            if (tId === 't6') { el.classList.add('active', 'thunder'); } else { el.classList.add('active'); }
-            document.getElementById('radio-' + tId).checked = true;
+            if (query.includes('тариф') || query.includes('цен') || query.includes('сколько стоит') || query.includes('стоимость') || query.includes('деньг') || query.includes('плат')) {
+                return "У нас действуют гибкие тарифы: от коротких звонков по 3, 5, 10 и 15 минут до полноценных сессий на 30 минут. Также есть специальный тариф «Громоотвод» за 50 USD. Выбирайте любой прямо на странице!";
+            }
+            if (query.includes('аноним') || query.includes('секрет') || query.includes('данные') || query.includes('узнает') || query.includes('конфиденц') || query.includes('безопасн')) {
+                return "Ваша анонимность — наш главный приоритет. Сервис не требует никаких регистраций, указания имен или телефонов. Диалог идет напрямую в Telegram, переписка нигде не сохраняется и не передается третьим лицам.";
+            }
+            if (query.includes('громоотвод') || query.includes('орать') || query.includes('злить') || query.includes('руга') || query.includes('крича') || query.includes('мат')) {
+                return "Тариф «Громоотвод» за 50 USD создан как раз для того, чтобы выплеснуть сильные эмоции. На этой сессии вам разрешено кричать, плакать, ругаться и сливать злость. Слушатель примет любой ваш шторм без осуждения.";
+            }
+            if (query.includes('как заказать') || query.includes('как начать') || query.includes('купить') || query.includes('заказ') || query.includes('кнопк')) {
+                return "Всё просто: кликните по нужному тарифу в карточке выше (он выделится рамкой), а затем нажмите кнопку «Заказать сессию через Telegram». Название тарифа скопируется, и вы перейдете в чат.";
+            }
+            if (query.includes('кто ты') || query.includes('ты человек') || query.includes('бот') || query.includes('робот')) {
+                return "Я — текстовый ассистент сайта, помогающий сориентироваться в правилах. Но общаться вы будете с живым, понимающим человеком — вашим Слушателем, который не станет вас перебивать или учить жизни.";
+            }
+            if (query.includes('правил') || query.includes('можно') || query.includes('нельзя') || query.includes('ограничен')) {
+                return "Главное правило — конфиденциальность и свобода выражения чувств. Вы можете говорить о чем угодно. Единственное ограничение — на тарифе «Громоотвод» нельзя переходить на прямые угрозы или личные оскорбления самого Слушателя.";
+            }
+            if (query.includes('привет') || query.includes('здравствуй') || query.includes('добрый день') || query.includes('ку')) {
+                return "Здравствуйте! Я ваш линейный помощник. Спросите меня о ценах, анонимности, длительности сессий или о том, как устроен «Громоотвод».";
+            }
+            if (query.includes('спасибо') || query.includes('благодар') || query.includes('понятно') || query.includes('хорошо')) {
+                return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше и переходите в чат.";
+            }
+
+            return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
         }
 
-        function redirectToTelegram() {
-            const msg = "Здравствуйте! Я хочу заказать сессию. Выбранный тариф: " + selectedTariffText;
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(msg).then(() => {
-                    alert("Название тарифа скопировано! Пожалуйста, вставьте его в чате (Ctrl+V или долгий тап -> Вставить).");
-                    window.open("https://t.me", '_blank');
-                }).catch(() => { window.open("https://t.me", '_blank'); });
-            } else { window.open("https://t.me", '_blank'); }
-        }
-
+        // ОРИГИНАЛЬНАЯ НАТИВНАЯ ФУНКЦИЯ ШЕРИНГА
         function shareWebsite() {
-            const shareData = {
-                title: 'СЛУШАТЕЛЬ.онлайн',
-                text: 'Иногда нужно просто выговориться. Без осуждения, советов и регистрации. Конфиденциальный сервис поддержки.',
-                url: window.location.href
-            };
             if (navigator.share) {
-                navigator.share(shareData).catch(() => {});
+                navigator.share({
+                    title: 'Твой Слушатель',
+                    text: 'Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.',
+                    url: window.location.href
+                }).catch(console.error);
             } else {
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert("Ссылка на сайт успешно скопирована! Отправьте её друзьям в мессенджерах.");
-                }).catch(() => {
-                    alert("Ссылка на сайт: " + window.location.href);
-                });
+                alert('Поделиться ссылкой: ' + window.location.href);
             }
-        }
-
-        function handleKeyPress(e) { if (e.key === 'Enter') sendMessageToSmartAI(); }
-
-        function sendMessageToSmartAI() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim(); if (!text) return;
-            appendMessage(text, 'user'); input.value = '';
-            const box = document.getElementById('chatMessages');
-            const load = document.createElement('div');
-            load.className = "msg bot"; load.id = "ai-loading-status"; load.style = "background-color: #1e293b; color: #94a3b8; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-right: 20px;"; load.innerText = "ИИ подбирает ответ...";
-            box.appendChild(load); box.scrollTop = box.scrollHeight;
-            setTimeout(() => {
-                const el = document.getElementById("ai-loading-status"); if (el) el.remove();
-                appendMessage(generateLocalAIResponse(text), 'bot');
-            }, 500);
-        }
-
-        function appendMessage(t, s) {
-            const box = document.getElementById('chatMessages');
-            const d = document.createElement('div'); d.className = "msg " + s; d.style = s === 'user' ? "background-color: #818cf8; color: #ffffff; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-left: 20px; text-align: right;" : "background-color: #1e293b; color: #f1f5f9; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-right: 20px;"; d.innerText = t;
-            box.appendChild(d); box.scrollTop = box.scrollHeight;
-        }
-
-        function generateLocalAIResponse(i) {
-            const q = i.toLowerCase();
-            if (q.includes('час') || q.includes('60 мин') || q.includes('длинн') || q.includes('дольше')) return "Да, вы можете заказать сессию на 1 час или даже дольше. На сайте указаны базовые экспресс-тарифы, но длительное время мы легко согласуем индивидуально. Нажмите на синюю кнопку, перейдите в Telegram, и мы подберем удобный для вас слот.";
-            if (q.includes('тариф') || q.includes('цен') || q.includes('сколько стоит') || q.includes('стоимость') || q.includes('деньг') || q.includes('плат')) return "У нас действуют тарифы: Супер-короткий (3 минуты) за 3 USD, Экспресс (5 минут) за 5 USD, Быстрый (10 минут) за 10 USD, Короткий (15 минут) за 15 USD, Стандарт (30 минут) за 30 USD, и специальный «Громоотвод» (10 минут) за 50 USD.";
-            if (q.includes('аноним') || q.includes('секрет') || q.includes('данные') || q.includes('узнает') || q.includes('конфиденц') || q.includes('безопасн')) return "Ваша анонимность — наш главный приоритет. Сервис не требует никаких регистраций, указания имен или телефонов. Диалог идет напрямую в Telegram, переписка нигде не сохраняется.";
-            if (q.includes('громоотвод') || q.includes('орать') || q.includes('злить') || q.includes('руга') || q.includes('крича') || q.includes('мат')) return "Тариф «Громоотвод» теперь длится 10 минут и стоит 50 USD. Он создан специально для интенсивного выплеска сильных эмоций. На этой сессии вам разрешено кричать, плакать, ругаться и сливать злость. Слушатель примет ваш шторм без осуждения.";
-            if (q.includes('как заказать') || q.includes('как начать') || q.includes('купить') || q.includes('заказ') || q.includes('кнопк')) return "Всё просто: кликните по нужному тарифу в карточке выше, а затем нажмите большую голубую кнопку «Заказать сессию через Telegram». Название тарифа скопируется, и вы перейдете в чат.";
-            if (q.includes('кто ты') || q.includes('ты человек') || q.includes('бот') || q.includes('робот')) return "Я — текстовый ассистент сайта, помогающий сориентироваться в правилах. Но созваниваться вы будете с живым, понимающим человеком — вашим Слушателем.";
-            if (q.includes('правил') || q.includes('можно') || q.includes('нельзя') || q.includes('ограничен')) return "Главное правило — конфиденциальность. Единственное ограничение — на тарифе «Громоотвод» нельзя переходить на прямые угрозы или личные оскорбления самого Слушателя.";
-            if (q.includes('привет') || q.includes('здравствуй') || q.includes('добрый день') || q.includes('ку')) return "Здравствуйте! Я ваш линейный помощник. Спросите меня о новых тарифах, анонимности, или о том, как устроен обновленный «Громоотвод».";
-            if (q.includes('спасибо') || q.includes('благодар') || q.includes('понятно') || q.includes('хорошо')) return "Рад помочь! Если вы чувствуены, что нужно срочно выговориться — выбирайте подходящий экспресс-тариф выше и переходите в чат.";
-            return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите синюю кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на ваш вопрос подробно лично в чате.";
         }
     </script>
 </body>
