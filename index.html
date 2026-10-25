@@ -89,8 +89,6 @@
         </div>
         <div id="payment-section" class="card">
             <h2 style="text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 20px;">Выберите тариф сессии</h2>
-            
-            <!-- Тариф 1 -->
             <div class="tariff-option active" id="t1" onclick="selectTariff('t1', 'Супер-короткий звонок (3 минуты) за 3 USD')">
                 <div class="tariff-left">
                     <input type="radio" name="time-tariff" id="radio-t1" checked>
@@ -101,8 +99,6 @@
                 </div>
                 <span style="font-size:20px; font-weight:bold; color:#818cf8;">3 USD</span>
             </div>
-            
-            <!-- Тариф 2 -->
             <div class="tariff-option" id="t2" onclick="selectTariff('t2', 'Экспресс-звонок (5 минут) за 5 USD')">
                 <div class="tariff-left">
                     <input type="radio" name="time-tariff" id="radio-t2">
@@ -113,8 +109,6 @@
                 </div>
                 <span style="font-size:20px; font-weight:bold; color:#818cf8;">5 USD</span>
             </div>
-            
-            <!-- Тариф 3 -->
             <div class="tariff-option" id="t3" onclick="selectTariff('t3', 'Быстрый звонок (10 минут) за 10 USD')">
                 <div class="tariff-left">
                     <input type="radio" name="time-tariff" id="radio-t3">
@@ -125,8 +119,6 @@
                 </div>
                 <span style="font-size:20px; font-weight:bold; color:#818cf8;">10 USD</span>
             </div>
-
-            <!-- Тариф 4 -->
             <div class="tariff-option" id="t4" onclick="selectTariff('t4', 'Короткий звонок (15 минут) за 15 USD')">
                 <div class="tariff-left">
                     <input type="radio" name="time-tariff" id="radio-t4">
@@ -137,8 +129,6 @@
                 </div>
                 <span style="font-size:20px; font-weight:bold; color:#818cf8;">15 USD</span>
             </div>
-            
-            <!-- Тариф 5 -->
             <div class="tariff-option" id="t5" onclick="selectTariff('t5', 'Стандартная сессия (30 минут) за 30 USD')">
                 <div class="tariff-left">
                     <input type="radio" name="time-tariff" id="radio-t5">
@@ -149,8 +139,6 @@
                 </div>
                 <span style="font-size:20px; font-weight:bold; color:#818cf8;">30 USD</span>
             </div>
-            
-            <!-- Тариф 6 -->
             <div class="tariff-option" id="t6" onclick="selectTariff('t6', '⚡ ТАРИФ ГРОМООТВОД (10 мин) за 50 USD')">
                 <div class="tariff-left">
                     <input type="radio" name="time-tariff" id="radio-t6">
@@ -161,10 +149,8 @@
                 </div>
                 <span style="font-size:20px; font-weight:bold; color:#ef4444;">50 USD</span>
             </div>
-            
             <button class="btn-test" onclick="redirectToTelegram()">Заказать сессию через Telegram</button>
         </div>
-        <!-- Интерактивный ИИ-чат -->
         <div class="ai-chat-container">
             <h3 style="text-align: center; margin-top: 0; color: #818cf8; font-size: 18px;">Задать вопрос ИИ-ассистенту</h3>
             <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-bottom: 15px;">Задайте ИИ любой вопрос о тарифах, часе работы или правилах.</p>
@@ -176,10 +162,8 @@
                 <button class="ai-chat-submit" onclick="sendMessageToSmartAI()">Отправить</button>
             </div>
         </div>
-
         <button onclick="shareWebsite()" style="background: none; border: 1px solid #1e293b; color: #94a3b8; padding: 12px 24px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin: 40px auto 0 auto; font-size: 14px; font-weight: 500; transition: all 0.2s;">🔗 Поделиться этим сервисом</button>
     </main>
-
     <div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
         <div class="share-modal-content">
             <div class="share-modal-header">
@@ -198,15 +182,88 @@
         </div>
     </div>
     <footer>&copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.</footer>
+        <div id="payment-section" class="card">
+            <h2 style="text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 20px;">Выберите тариф сессии</h2>
+            <div class="tariff-option active" id="t1" onclick="selectTariff('t1', 'Супер-короткий звонок (3 минуты) за 3 USD')">
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t1" checked>
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Супер-короткий звонок (3 минуты)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Быстро сбросить напряжение</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">3 USD</span>
+            </div>
+            <div class="tariff-option" id="t2" onclick="selectTariff('t2', 'Экспресс-звонок (5 минут) за 5 USD')">
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t2">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Экспресс-звонок (5 минут)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Кратко изложить суть проблемы</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">5 USD</span>
+            </div>
+            <div class="tariff-option" id="t3" onclick="selectTariff('t3', 'Быстрый звонок (10 минут) за 10 USD')">
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t3">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Быстрый звонок (10 минут)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Выговорить самое главное</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">10 USD</span>
+            </div>
+            <div class="tariff-option" id="t4" onclick="selectTariff('t4', 'Короткий звонок (15 минут) за 15 USD')">
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t4">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Короткий звонок (15 минут)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Выпустить пар и выговориться</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">15 USD</span>
+            </div>
+            <div class="tariff-option" id="t5" onclick="selectTariff('t5', 'Стандартная сессия (30 минут) за 30 USD')">
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t5">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Стандартная сессия (30 минут)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Подробно рассказать свою историю</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">30 USD</span>
+            </div>
+            <div class="tariff-option" id="t6" onclick="selectTariff('t6', '⚡ ТАРИФ ГРОМООТВОД (10 мин) за 50 USD')">
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t6">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block; color:#f87171;">⚡ ТАРИФ «ГРОМООТВОД» (10 мин)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Можно орать и сливать ярость (в рамках правил)</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#ef4444;">50 USD</span>
+            </div>
+            <button class="btn-test" onclick="redirectToTelegram()">Заказать сессию через Telegram</button>
+        </div>
+        <div class="ai-chat-container">
+            <h3 style="text-align: center; margin-top: 0; color: #818cf8; font-size: 18px;">Задать вопрос ИИ-ассистенту</h3>
+            <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-bottom: 15px;">Задайте ИИ любой вопрос о тарифах, часе работы или правилах.</p>
+            <div class="ai-chat-messages" id="chatMessages">
+                <div class="msg bot">Здравствуйте! Я ваш ИИ-консультант. Задайте любой вопрос, я отвечу человеческим языком.</div>
+            </div>
+            <div class="ai-chat-input-area">
+                <input type="text" id="chatInput" class="ai-chat-input" placeholder="Спросите меня о тарифах, часе работы или правилах..." onkeypress="handleKeyPress(event)">
+                <button class="ai-chat-submit" onclick="sendMessageToSmartAI()">Отправить</button>
+            </div>
+        </div>
+        <button onclick="shareWebsite()" style="background: none; border: 1px solid #1e293b; color: #94a3b8; padding: 12px 24px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin: 40px auto 0 auto; font-size: 14px; font-weight: 500; transition: all 0.2s;">🔗 Поделиться этим сервисом</button>
+    </main>
     <script>
-        // Инициализация базовых переменных состояния
         let selectedTariffText = 'Супер-короткий звонок (3 минуты) за 3 USD'; 
         let copyTimeoutId = null;
-        
-        // Гарантируем чистое определение путей на любом сервере/локальном ПК
         const siteUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
         const shareText = "СЛУШАТЕЛЬ.онлайн — Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.";
-
         function selectTariff(tariffId, tariffText) {
             ['t1', 't2', 't3', 't4', 't5', 't6'].forEach(id => {
                 const el = document.getElementById(id);
@@ -224,38 +281,24 @@
             const radio = document.getElementById('radio-' + tariffId);
             if (radio) radio.checked = true;
         }
-
         function redirectToTelegram() {
             const message = "Здравствуйте! Я хочу заказать сессию. Выбранный тариф: " + selectedTariffText;
             const telegramUrl = "https://t.me"; 
-            
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(message).then(() => {
                     alert("Название тарифа скопировано! Пожалуйста, вставьте его в чате (Ctrl+V или долгий тап -> Вставить).");
                     window.open(telegramUrl, '_blank');
-                }).catch(() => {
-                    window.open(telegramUrl, '_blank');
-                });
-            } else {
-                window.open(telegramUrl, '_blank');
-            }
+                }).catch(() => { window.open(telegramUrl, '_blank'); });
+            } else { window.open(telegramUrl, '_blank'); }
         }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessageToSmartAI();
-            }
-        }
-
+        function handleKeyPress(event) { if (event.key === 'Enter') { sendMessageToSmartAI(); } }
         function sendMessageToSmartAI() {
             const input = document.getElementById('chatInput');
             if (!input) return;
             const text = input.value.trim();
             if (!text) return;
-
             appendMessage(text, 'user');
             input.value = '';
-
             const chatMessages = document.getElementById('chatMessages');
             const loadingDiv = document.createElement('div');
             loadingDiv.className = "msg bot";
@@ -264,7 +307,6 @@
             loadingDiv.innerText = "ИИ подбирает ответ...";
             chatMessages.appendChild(loadingDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-
             setTimeout(() => {
                 const statusEl = document.getElementById("ai-loading-status");
                 if (statusEl) statusEl.remove();
@@ -272,7 +314,6 @@
                 appendMessage(botResponse, 'bot');
             }, 500);
         }
-
         function appendMessage(text, sender) {
             const chatMessages = document.getElementById('chatMessages');
             if (!chatMessages) return;
@@ -285,88 +326,80 @@
             chatMessages.appendChild(msgDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-
         function generateLocalAIResponse(input) {
             const query = input.toLowerCase();
-            if (query.includes('час') || query.includes('60 мин') || query.includes('длинн') || query.includes('дольше')) {
-                return "Да, вы можете заказать сессию на 1 час или даже дольше. На сайте указаны базовые тарифы до 30 минут, но индивидуальное время мы легко согласуем. Перейдите в Telegram, и мы подберем удобный для вас слот.";
-            }
-            if (query.includes('тариф') || query.includes('цен') || query.includes('сколько стоит') || query.includes('стоимость') || query.includes('деньг') || query.includes('плат')) {
-                return "У нас действуют гибкие тарифы: от коротких звонков по 3, 5, 10 и 15 минут до полноценных сессий на 30 минут. Также есть специальный тариф «Громоотвод» за 50 USD. Выбирайте любой прямо на странице!";
-            }
-            if (query.includes('аноним') || query.includes('секрет') || query.includes('данные') || query.includes('узнает') || query.includes('конфиденц') || query.includes('безопасн')) {
-                return "Ваша анонимность — наш главный приоритет. Сервис не требует никаких регистраций, указания имен или телефонов. Диалог идет напрямую в Telegram, переписка нигде не сохраняется и не передается третьим лицам.";
-            }
-            if (query.includes('громоотвод') || query.includes('орать') || query.includes('злить') || query.includes('руга') || query.includes('крича') || query.includes('мат')) {
-                return "Тариф «Громоотвод» за 50 USD создан как раз для того, чтобы выплеснуть сильные эмоции. На этой сессии вам разрешено кричать, плакать, ругаться и сливать злость. Слушатель примет любой ваш шторм без осуждения.";
-            }
-            if (query.includes('как заказать') || query.includes('как начать') || query.includes('купить') || query.includes('заказ') || query.includes('кнопк')) {
-                return "Всё просто: кликните по нужному тарифу в карточке выше (он выделится рамкой), а затем нажмите кнопку «Заказать сессию через Telegram». Название тарифа скопируется, и вы перейдете в чат.";
-            }
-            if (query.includes('кто ты') || query.includes('ты человек') || query.includes('бот') || query.includes('робот')) {
-                return "Я — текстовый ассистент сайта, помогающий сориентироваться в правилах. Но общаться вы будете с живым, понимающим человеком — вашим Слушателем, который не станет вас перебивать или учить жизни.";
-            }
-            if (query.includes('правил') || query.includes('можно') || query.includes('нельзя') || query.includes('ограничен')) {
-                return "Главное правило — конфиденциальность и свобода выражения чувств. Вы можете говорить о чем угодно. Единственное ограничение — на тарифе «Громоотвод» нельзя переходить на прямые угрозы или личные оскорбления самого Слушателя.";
-            }
-            if (query.includes('привет') || query.includes('здравствуй') || query.includes('добрый день') || query.includes('ку')) {
-                return "Здравствуйте! Я ваш линейный помощник. Спросите меня о ценах, анонимности, длительности сессий или о том, как устроен «Громоотвод».";
-            }
-            if (query.includes('спасибо') || query.includes('благодар') || query.includes('понятно') || query.includes('хорошо')) {
-                return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше и переходите в чат.";
-            }
+            if (query.includes('час') || query.includes('60 мин') || query.includes('длинн') || query.includes('дольше')) { return "Да, вы можете заказать сессию на 1 час или даже дольше. На сайте указаны базовые тарифы до 30 минут, но индивидуальное время мы легко согласуем. Перейдите в Telegram, и мы подберем удобный для вас слот."; }
+            if (query.includes('тариф') || query.includes('цен') || query.includes('сколько стоит') || query.includes('стоимость') || query.includes('деньг') || query.includes('плат')) { return "У нас действуют гибкие тарифы: от коротких звонков по 3, 5, 10 и 15 минут до полноценных сессий на 30 минут. Также есть специальный тариф «Громоотвод» за 50 USD. Выбирайте любой прямо на странице!"; }
+            if (query.includes('аноним') || query.includes('секрет') || query.includes('данные') || query.includes('узнает') || query.includes('конфиденц') || query.includes('безопасн')) { return "Ваша анонимность — наш главный приоритет. Сервис не требует никаких регистраций, указания имен или телефонов. Диалог идет напрямую в Telegram, переписка нигде не сохраняется и не передается третьим лицам."; }
+            if (query.includes('громоотвод') || query.includes('орать') || query.includes('злить') || query.includes('руга') || query.includes('крича') || query.includes('мат')) { return "Тариф «Громоотвод» за 50 USD создан как раз для того, чтобы выплеснуть сильные эмоции. На этой сессии вам разрешено кричать, плакать, ругаться и сливать злость. Слушатель примет любой ваш шторм без осуждения."; }
+            if (query.includes('как заказать') || query.includes('как начать') || query.includes('купить') || query.includes('заказ') || query.includes('кнопк')) { return "Всё просто: кликните по нужному тарифу в карточке выше (он выделится рамкой), а затем нажмите кнопку «Заказать сессию через Telegram». Название тарифа скопируется, и вы перейдете в чат."; }
+            if (query.includes('кто ты') || query.includes('ты человек') || query.includes('бот') || query.includes('робот')) { return "Я — текстовый ассистент сайта, помогающий сориентироваться в правилах. Но общаться вы будете с живым, понимающим человеком — вашим Слушателем, который не станет вас перебивать или учить жизни."; }
+            if (query.includes('правил') || query.includes('можно') || query.includes('нельзя') || query.includes('ограничен')) { return "Главное правило — конфиденциальность и свобода выражения чувств. Вы можете говорить о чем угодно. Единственное ограничение — на тарифе «Громоотвод» нельзя переходить на прямые угрозы или личные оскорбления самого Слушателя."; }
+            if (query.includes('привет') || query.includes('здравствуй') || query.includes('добрый день') || query.includes('ку')) { return "Здравствуйте! Я ваш линейный помощник. Спросите меня о ценах, анонимности, длительности сессий или о том, как устроен «Громоотвод»."; }
+            if (query.includes('спасибо') || query.includes('благодар') || query.includes('понятно') || query.includes('хорошо')) { return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше и переходите в чат."; }
             return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
         }
-
         function buildShareLinks() {
             const encodedUrl = encodeURIComponent(siteUrl);
             const encodedText = encodeURIComponent(shareText);
             const encodedCombined = encodeURIComponent(shareText + " " + siteUrl);
-
             const tgBtn = document.getElementById('share-tg');
-            if (tgBtn) {
-                tgBtn.onclick = (e) => {
-                    e.preventDefault();
-                    window.open(`https://t.me{encodedUrl}&text=${encodedText}`, '_blank', 'noopener,noreferrer');
-                };
-            }
-
+            if (tgBtn) { tgBtn.onclick = (e) => { e.preventDefault(); window.open(`https://t.me{encodedUrl}&text=${encodedText}`, '_blank', 'noopener,noreferrer'); }; }
             const waBtn = document.getElementById('share-wa');
-            if (waBtn) {
-                waBtn.onclick = (e) => {
-                    e.preventDefault();
-                    window.open(`https://whatsapp.com{encodedCombined}`, '_blank', 'noopener,noreferrer');
-                };
-            }
-
+            if (waBtn) { waBtn.onclick = (e) => { e.preventDefault(); window.open(`https://whatsapp.com{encodedCombined}`, '_blank', 'noopener,noreferrer'); }; }
             const viberBtn = document.getElementById('share-viber');
-            if (viberBtn) {
-                viberBtn.onclick = (e) => {
-                    e.preventDefault();
-                    window.open(`viber://forward?text=${encodedCombined}`, '_blank', 'noopener,noreferrer');
-                };
-            }
-
+            if (viberBtn) { viberBtn.onclick = (e) => { e.preventDefault(); window.open(`viber://forward?text=${encodedCombined}`, '_blank', 'noopener,noreferrer'); }; }
             const xBtn = document.getElementById('share-x');
-            if (xBtn) {
-                xBtn.onclick = (e) => {
-                    e.preventDefault();
-                    window.open(`https://x.com{encodedUrl}&text=${encodedText}`, '_blank', 'noopener,noreferrer');
-                };
-            }
-
+            if (xBtn) { xBtn.onclick = (e) => { e.preventDefault(); window.open(`https://x.com{encodedUrl}&text=${encodedText}`, '_blank', 'noopener,noreferrer'); }; }
             const vkBtn = document.getElementById('share-vk');
-            if (vkBtn) {
-                vkBtn.onclick = (e) => {
-                    e.preventDefault();
-                    window.open(`https://vk.com{encodedUrl}&title=${encodedText}`, '_blank', 'noopener,noreferrer');
-                };
-            }
-
+            if (vkBtn) { vkBtn.onclick = (e) => { e.preventDefault(); window.open(`https://vk.com{encodedUrl}&title=${encodedText}`, '_blank', 'noopener,noreferrer'); }; }
             const instaBtn = document.getElementById('share-insta');
             if (instaBtn) {
                 instaBtn.onclick = (e) => {
                     e.preventDefault();
+                    navigator.clipboard.writeText(siteUrl).then(() => {
+                        alert("Ссылка скопирована! Откройте Instagram и вставьте её в Директ или Сторис.");
+                        window.open("https://instagram.com", "_blank", 'noopener,noreferrer');
+                    });
+                };
+            }
+        }
+        function shareWebsite() {
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            if (isMobile && navigator.share) {
+                navigator.share({ title: 'Твой Слушатель', text: 'Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.', url: siteUrl }).catch(() => {});
+            } else {
+                const modal = document.getElementById('customShareModal');
+                if (modal) { buildShareLinks(); modal.style.display = 'flex'; }
+            }
+        }
+        function closeShareModal() {
+            const modal = document.getElementById('customShareModal');
+                if (modal) { buildShareLinks(); modal.style.display = 'flex'; }
+            }
+        }
+        function closeShareModal() {
+            const modal = document.getElementById('customShareModal');
+            if (modal) modal.style.display = 'none';
+            if (copyTimeoutId) { clearTimeout(copyTimeoutId); copyTimeoutId = null; resetCopyButtonState(); }
+        }
+        function copyShareLink() {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(siteUrl).then(() => {
+                    const btn = document.getElementById('modalCopyBtn');
+                    if (btn) {
+                        if (copyTimeoutId) clearTimeout(copyTimeoutId);
+                        btn.textContent = 'Успешно скопировано! ✓'; btn.style.backgroundColor = '#10b981';
+                        copyTimeoutId = setTimeout(() => { resetCopyButtonState(); copyTimeoutId = null; }, 2000);
+                    }
+                });
+            }
+        }
+        function resetCopyButtonState() {
+            const btn = document.getElementById('modalCopyBtn');
+            if (btn) { btn.textContent = '🔗 Копировать ссылку на сайт'; btn.style.backgroundColor = '#818cf8'; }
+        }
+        window.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeShareModal(); } });
     </script>
 </body>
 </html>
