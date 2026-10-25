@@ -511,11 +511,12 @@
             });
             
             // Динамическая сборка ссылок для мессенджеров (конфликт с Instagram устранен)
-            document.getElementById('share-tg').href = `https://t.me{encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
-            document.getElementById('share-wa').href = `https://whatsapp.com{encodeURIComponent(shareText + ' ' + siteUrl)}`;
-            document.getElementById('share-viber').href = `viber://forward?text=${encodeURIComponent(shareText + ' ' + siteUrl)}`;
-            document.getElementById('share-x').href = `https://x.com{encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
-            document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(siteUrl)}&title=${encodeURIComponent(shareText)}`;
+document.getElementById('share-tg').href = `https://t.me{encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
+document.getElementById('share-wa').href = `https://whatsapp.com{encodeURIComponent(shareText + ' ' + siteUrl)}`;
+document.getElementById('share-viber').href = `viber://forward?text=${encodeURIComponent(shareText + ' ' + siteUrl)}`;
+document.getElementById('share-x').href = `https://x.com{encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
+document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(siteUrl)}&title=${encodeURIComponent(shareText)}`;
+
         });
 
         function selectTariff(tariffId, tariffText) {
