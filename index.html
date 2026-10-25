@@ -125,6 +125,7 @@
                 </div>
                 <span style="font-size:20px; font-weight:bold; color:#818cf8;">10 USD</span>
             </div>
+
             <!-- Тариф 4 -->
             <div class="tariff-option" id="t4" onclick="selectTariff('t4', 'Короткий звонок (15 минут) за 15 USD')">
                 <div class="tariff-left">
@@ -176,9 +177,10 @@
                 <button class="ai-chat-submit" onclick="sendMessageToSmartAI()">Отправить</button>
             </div>
         </div>
-        
         <button onclick="shareWebsite()" style="background: none; border: 1px solid #1e293b; color: #94a3b8; padding: 12px 24px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin: 40px auto 0 auto; font-size: 14px; font-weight: 500; transition: all 0.2s;">🔗 Поделиться этим сервисом</button>
     </main>
+
+    <!-- Исправленное модальное окно "Поделиться" -->
     <div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
         <div class="share-modal-content">
             <div class="share-modal-header">
@@ -205,50 +207,51 @@
                 </a>
 
                 <!-- Кнопка Instagram -->
-                <a id="share-insta" href="https://instagram.com" target="_blank" class="share-item">
+                <a id="share-insta" href="#" target="_blank" class="share-item">
                     <div class="share-icon insta-bg">
                         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                     </div>
                     <span>Instagram</span>
                 </a>
 
-                <!-- Кнопка Viber -->
+                <!-- Кнопка Viber (Исправленный чистый SVG) -->
                 <a id="share-viber" href="#" target="_blank" class="share-item">
                     <div class="share-icon viber-bg">
-                        <svg viewBox="0 0 24 24"><path d="M9.89 2.052c4.807-.463 9.405 2.585 10.158 7.394.342 2.185.048 4.3-.923 6.223-.19.378-.456.467-.803.226-.307-.212-.303-.507-.156-.816.75-1.579.97-3.252.684-4.992-.614-3.738-3.879-6.395-7.666-6.002-1.844.192-3.418.99-4.708 2.336-.264.275-.521.258-.755-.03-.223-.275-.2-.553.07-.841C7.147 4.14 8.47 3.01 9.89 2.052zm-1.823 4.17c3.19-.508 6.37 1.34 7.027 4.542.27 1.314.116 2.576-.439 3.76-.176.375-.444.426-.74.196-.282-.218-.261-.502-.12-.782.41-.818.513-1.691.316-2.593-.45-2.072-2.369-3.284-4.444-2.871-.786.156-1.442.545-2.001 1.116-.277.283-.538.286-.777-.015-.224-.282-.19-.56-.095-.25 1.002-1.026 2.17-1.745 3.183-2.494zm3.923 6.942c.026-.59.183-1.127.608-1.543.51-.5 1.135-.615 1.777-.384.664.238.868.749.626 1.442-.239.684-.664 1.23-1.328 1.543-.539.255-1.082.164-1.543-.22-.112-.093-.14-.233-.14-.378zm3.626 5.864c-.496.11-.937-.099-1.285-.455-1.059-1.082-2.128-2.155-3.176-3.243-.16-.165-.333-.217-.557-.145-.632.203-1.23.14-1.794-.238-1.464-.982-2.607-2.274-3.518-3.793-.46-.767-.58-1.597-.184-2.428.093-.195.074-.356-.062-.51C2.535 7.42 1.956 6.786 1.385 6.14c-.38-.43-.377-.923.013-1.32 1.045-1.065 2.102-2.12 3.167-3.167.35-.344.815-.365 1.173-.049.57.502 1.117 1.03 1.674 1.546.195.18.252.378.14.63-.3.682-.294 1.378.077 2.052.126.228.324.364.577.466 1.252.502 2.375 1.218 3.327 2.176 1.026 1.032 1.8 2.247 2.327 3.606.096.248.243.435.474.55.666.331 1.328.277 1.968-.07.27-.146.47-.094.669.13.56.611 1.143 1.196 1.706 1.802.348.375.348.847-.01 1.205-1.068 1.066-2.138 2.13-3.21 3.19-.344.341-.774.453-1.246.337zm-6.208-4.7c.365-.01.594.161.64.475.05.341-.122.597-.482.637-.624.068-1.129-.12-1.5-.644-.226-.319-.181-.6.109-.815.289-.214.568-.168.795.122.125.161.258.217.438.225z"/></svg></div>
+                        <svg viewBox="0 0 24 24"><path d="M9.89 2.052c4.807-.463 9.405 2.585 10.158 7.394.342 2.185.048 4.3-.923 6.223-.19.378-.456.467-.803.226-.307-.212-.303-.507-.156-.816.75-1.579.97-3.252.684-4.992-.614-3.738-3.879-6.395-7.666-6.002-1.844.192-3.418.99-4.708 2.336-.264.275-.521.258-.755-.03-.223-.275-.2-.553.07-.841C7.147 4.14 8.47 3.01 9.89 2.052zm-1.823 4.17c3.19-.508 6.37 1.34 7.027 4.542.27 1.314.116 2.576-.439 3.76-.176.375-.444.426-.74.196-.282-.218-.261-.502-.12-.782.41-.818.513-1.691.316-2.593-.45-2.072-2.369-3.284-4.444-2.871-.786.156-1.442.545-2.001 1.116-.277.283-.538.286-.777-.015-.224-.282-.19-.56-.095-.25 1.002-1.026 2.17-1.745 3.183-2.494zm3.923 6.942c.026-.59.183-1.127.608-1.543.51-.5 1.135-.615 1.777-.384.664.238.868.749.626 1.442-.239.684-.664 1.23-1.328 1.543-.539.255-1.082.164-1.543-.22-.112-.093-.14-.233-.14-.378zm3.626 5.864c-.496.11-.937-.099-1.285-.455-1.059-1.082-2.128-2.155-3.176-3.243-.16-.165-.333-.217-.557-.145-.632.203-1.23.14-1.794-.238-1.464-.982-2.607-2.274-3.518-3.793-.46-.767-.58-1.597-.184-2.428.093-.195.074-.356-.062-.51C2.535 7.42 1.956 6.786 1.385 6.14c-.38-.43-.377-.923.013-1.32 1.045-1.065 2.102-2.12 3.167-3.167.35-.344.815-.365 1.173-.049.57.502 1.117 1.03 1.674 1.546.195.18.252.378.14.63-.3.682-.294 1.378.077 2.052.126.228.324.364.577.466 1.252.502 2.375 1.218 3.327 2.176 1.026 1.032 1.8 2.247 2.327 3.606.096.248.243.435.474.55.666.331 1.328.277 1.968-.07.27-.146.47-.094.669.13.56.611 1.143 1.196 1.706 1.802.348.375.348.847-.01 1.205-1.068 1.066-2.138 2.13-3.21 3.19-.344.341-.774.453-1.246.337zm-6.208-4.7c.365-.01.594.161.64.475.05.341-.122.597-.482.637-.624.068-1.129-.12-1.5-.644-.226-.319-.181-.6.109-.815.289-.214.568-.168.795.122.125.161.258.217.438.225z"/></svg>
+                    </div>
                     <span>Viber</span>
                 </a>
 
                 <!-- Кнопка X (Twitter) -->
                 <a id="share-x" href="#" target="_blank" class="share-item">
-                    <div class="share-icon x-bg"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+                    <div class="share-icon x-bg">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </div>
                     <span>X</span>
                 </a>
 
-                <!-- Кнопка VK -->
+                <!-- Кнопка VK (Очищенная от опечаток разметка) -->
                 <a id="share-vk" href="#" target="_blank" class="share-item">
-                    <div class="share-icon vk-bg"><svg viewBox="0 0 24 24"><path d="M15.029 24c-5.83 0-9.917-4.004-14.152-12.443C-.067 9.774.7 7.5 2.923 7.5h2.825c1.65 0 2.2.875 2.62 1.874 1.626 3.864 4.417 8.163 4.417 8.163.525.875.76.626.76-.002V8.998c-.126-1.503-.997-1.503-1.628-1.503h-.9c-.43 0-.67-.282-.43-.63C11.134 5.96 12.986 5 15.65 5c3.275 0 4.15 1.054 4.15 3.327v5.6c0 1.15 Jews 1.35 1.035 1.625-2.25 4.316-7.075 4.316-7.075.4-2.575-1.782h2.825c1.875 0 2.275.925 1.875 2.25-1.075 2.65-6.05 11.2-6.05 11.2-.55.975-1.325 1.5-2.225 1.5h-3.187z"/></svg></div>
+                    <div class="share-icon vk-bg">
+                        <svg viewBox="0 0 24 24"><path d="M15.029 24c-5.83 0-9.917-4.004-14.152-12.443C-.067 9.774.7 7.5 2.923 7.5h2.825c1.65 0 2.2.875 2.62 1.874 1.626 3.864 4.417 8.163 4.417 8.163.525.875.76.626.76-.002V8.998c-.126-1.503-.997-1.503-1.628-1.503h-.9c-.43 0-.67-.282-.43-.63C11.134 5.96 12.986 5 15.65 5c3.275 0 4.15 1.054 4.15 3.327v5.6c0 1.15 1.35 1.035 1.625-2.25 4.316-7.075 4.316-7.075.4-2.575-1.782h2.825c1.875 0 2.275.925 1.875 2.25-1.075 2.65-6.05 11.2-6.05 11.2-.55.975-1.325 1.5-2.225 1.5h-3.187z"/></svg>
+                    </div>
                     <span>VK</span>
                 </a>
 
             </div>
         </div>
     </div>
+
     <footer>&copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.</footer>
+
     <script>
+        // Инициализация базовых переменных состояния
         let selectedTariffText = 'Супер-короткий звонок (3 минуты) за 3 USD'; 
+        let copyTimeoutId = null;
         const siteUrl = window.location.origin + window.location.pathname;
         const shareText = "СЛУШАТЕЛЬ.онлайн — Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.";
 
-        window.addEventListener('DOMContentLoaded', () => {
-            // Динамическая установка корректных путей шеринга в модальном окне
-            document.getElementById('share-tg').href = `https://t.me{encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
-            document.getElementById('share-wa').href = `https://whatsapp.com{encodeURIComponent(shareText + ' ' + siteUrl)}`;
-            document.getElementById('share-viber').href = `viber://forward?text=${encodeURIComponent(shareText + ' ' + siteUrl)}`;
-            document.getElementById('share-x').href = `https://x.com{encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
-            document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(siteUrl)}&title=${encodeURIComponent(shareText)}`;
-        });
-
+        // Управление выбором тарифов сессий звонков
         function selectTariff(tariffId, tariffText) {
             ['t1', 't2', 't3', 't4', 't5', 't6'].forEach(id => {
                 const el = document.getElementById(id);
@@ -267,6 +270,7 @@
             if (radio) radio.checked = true;
         }
 
+        // Перенаправление заказа в Telegram аккаунт/бот
         function redirectToTelegram() {
             const message = "Здравствуйте! Я хочу заказать сессию. Выбранный тариф: " + selectedTariffText;
             const telegramUrl = "https://t.me"; // Вставьте сюда ник вашего бота/аккаунта
@@ -282,7 +286,7 @@
                 window.open(telegramUrl, '_blank');
             }
         }
-
+        // Вспомогательные функции ИИ-консультанта
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessageToSmartAI();
@@ -360,6 +364,42 @@
             return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
         }
 
+        // === ИСПРАВЛЕННАЯ ЛОГИКА ДЛЯ ДЕСКТОПНОГО ШЕРИНГА ===
+        window.addEventListener('DOMContentLoaded', () => {
+            const encodedUrl = encodeURIComponent(siteUrl);
+            const encodedText = encodeURIComponent(shareText);
+            const encodedCombined = encodeURIComponent(shareText + " " + siteUrl);
+
+            // Назначение корректных URL шлюзов для компьютеров
+            const tgBtn = document.getElementById('share-tg');
+            if (tgBtn) tgBtn.href = `https://t.me{encodedUrl}&text=${encodedText}`;
+
+            const waBtn = document.getElementById('share-wa');
+            if (waBtn) waBtn.href = `https://whatsapp.com{encodedCombined}`;
+
+            const viberBtn = document.getElementById('share-viber');
+            if (viberBtn) viberBtn.href = `viber://forward?text=${encodedCombined}`;
+
+            const xBtn = document.getElementById('share-x');
+            if (xBtn) xBtn.href = `https://x.com{encodedUrl}&text=${encodedText}`;
+
+            const vkBtn = document.getElementById('share-vk');
+            if (vkBtn) vkBtn.href = `https://vk.com{encodedUrl}&title=${encodedText}`;
+
+            // Специфический перехват кнопки Instagram
+            const instaBtn = document.getElementById('share-insta');
+            if (instaBtn) {
+                instaBtn.href = "#"; 
+                instaBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(siteUrl).then(() => {
+                        alert("Ссылка скопирована! Откройте Instagram и вставьте её в Директ или Сторис.");
+                        window.open("https://instagram.com", "_blank");
+                    });
+                });
+            }
+        });
+
         function shareWebsite() {
             const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
             if (isMobile && navigator.share) {
@@ -377,6 +417,11 @@
         function closeShareModal() {
             const modal = document.getElementById('customShareModal');
             if (modal) modal.style.display = 'none';
+            if (copyTimeoutId) {
+                clearTimeout(copyTimeoutId);
+                copyTimeoutId = null;
+                resetCopyButtonState();
+            }
         }
 
         function copyShareLink() {
@@ -384,16 +429,31 @@
                 navigator.clipboard.writeText(siteUrl).then(() => {
                     const btn = document.getElementById('modalCopyBtn');
                     if (btn) {
+                        if (copyTimeoutId) clearTimeout(copyTimeoutId);
                         btn.textContent = 'Успешно скопировано! ✓';
                         btn.style.backgroundColor = '#10b981';
-                        setTimeout(() => { 
-                            btn.textContent = '🔗 Копировать ссылку на сайт'; 
-                            btn.style.backgroundColor = '#818cf8';
+                        copyTimeoutId = setTimeout(() => { 
+                            resetCopyButtonState();
+                            copyTimeoutId = null;
                         }, 2000);
                     }
                 });
             }
         }
+
+        function resetCopyButtonState() {
+            const btn = document.getElementById('modalCopyBtn');
+            if (btn) {
+                btn.textContent = '🔗 Копировать ссылку на сайт'; 
+                btn.style.backgroundColor = '#818cf8';
+            }
+        }
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeShareModal();
+            }
+        });
     </script>
 </body>
 </html>
