@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Твой Слушатель — Сервис конфиденциальной поддержки</title>
-     <!-- Жесткое и правильное подключение фавиконки для вкладок браузера -->
+    
+    <!-- Подключение фавиконки (зеленый человечек) -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
+    
     <style>
         body {
             background-color: #0f172a !important;
@@ -229,7 +231,7 @@
             margin-top: auto;
         }
 
-        /* УЛУЧШЕННЫЕ СТИЛИ ОКНА ШЕРИНГА С ОРИГИНАЛЬНЫМИ ИКОНКАМИ */
+        /* СТИЛИ ОРИГИНАЛЬНОГО ОКНА ШЕРИНГА С ОРИГИНАЛЬНЫМИ ИКОНКАМИ */
         .share-modal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -270,7 +272,7 @@
         }
         .modal-copy-btn:hover { background: #6366f1; }
         .share-modal-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: 100%; box-sizing: border-box;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; box-sizing: border-box;
         }
         .share-item {
             text-decoration: none; color: #94a3b8; font-size: 12px;
@@ -278,17 +280,21 @@
         }
         .share-item:hover { color: #f1f5f9; }
         .share-icon {
-            width: 48px; height: 48px; border-radius: 50%;
+            width: 52px; height: 52px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             transition: transform 0.2s, filter 0.2s;
         }
         .share-icon svg {
-            width: 22px; height: 22px; fill: #ffffff;
+            width: 24px; height: 24px; fill: #ffffff;
         }
         .share-item:hover .share-icon { transform: scale(1.06); filter: brightness(1.1); }
+        
+        /* Цвета для 6 иконок */
         .tg-bg { background: #26A5E4; }
         .wa-bg { background: #25D366; }
-        .gmail-bg { background: #EA4335; }
+        .insta-bg { background: #E1306C; }
+        .viber-bg { background: #7360F2; }
+        .x-bg { background: #111111; border: 1px solid #334155; }
         .vk-bg { background: #0077FF; }
 
         /* ЖЕСТКОЕ ИСПРАВЛЕНИЕ ОТОБРАЖЕНИЯ ПРЕИМУЩЕСТВ НА СМАРТФОНАХ */
@@ -574,7 +580,6 @@
             return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
         }
 
-        // Логика нативного / кастомного открытия
         function shareWebsite() {
             const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
             if (isMobile && navigator.share) {
