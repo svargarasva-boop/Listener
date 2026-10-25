@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -225,22 +225,23 @@
             margin-top: auto;
         }
 
-        /* УЛУЧШЕННЫЕ СТИЛИ ОКНА ШЕРИНГА С ЭМОДЗИ */
+        /* УЛУЧШЕННЫЕ СТИЛИ ОКНА ШЕРИНГА С ОРИГИНАЛЬНЫМИ ИКОНКАМИ */
         .share-modal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(2, 6, 23, 0.85);
             display: flex; justify-content: center; align-items: center;
             z-index: 9999;
+            backdrop-filter: blur(4px);
         }
         .share-modal-content {
             background: #020617;
             border: 1px solid #1e293b;
             border-radius: 24px;
             padding: 25px;
-            width: 90%; max-width: 420px;
+            width: 90%; max-width: 440px;
             color: #f1f5f9;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
         .share-modal-header {
             display: flex; justify-content: space-between; align-items: center;
@@ -257,11 +258,11 @@
         }
         .share-modal-input-group input {
             flex: 1; background: #0f172a; border: 1px solid #1e293b;
-            color: #f1f5f9; padding: 10px 14px; border-radius: 8px; font-size: 14px; outline: none;
+            color: #f1f5f9; padding: 12px 14px; border-radius: 10px; font-size: 14px; outline: none;
         }
         .modal-copy-btn {
             background: #818cf8; color: #ffffff; border: none;
-            padding: 10px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold;
+            padding: 10px 16px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: bold;
         }
         .modal-copy-btn:hover { background: #6366f1; }
         .share-modal-grid {
@@ -274,13 +275,17 @@
         .share-item:hover { color: #f1f5f9; }
         .share-icon {
             width: 48px; height: 48px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; font-size: 20px; transition: transform 0.2s;
+            display: flex; justify-content: center; align-items: center;
+            transition: transform 0.2s, filter 0.2s;
         }
-        .share-item:hover .share-icon { transform: scale(1.05); }
-        .tg-bg { background: #0088cc; }
-        .wa-bg { background: #25d366; }
-        .gmail-bg { background: #ea4335; }
-        .vk-bg { background: #0077ff; }
+        .share-icon svg {
+            width: 22px; height: 22px; fill: #ffffff;
+        }
+        .share-item:hover .share-icon { transform: scale(1.06); filter: brightness(1.1); }
+        .tg-bg { background: #26A5E4; }
+        .wa-bg { background: #25D366; }
+        .gmail-bg { background: #EA4335; }
+        .vk-bg { background: #0077FF; }
 
         /* ЖЕСТКОЕ ИСПРАВЛЕНИЕ ОТОБРАЖЕНИЯ ПРЕИМУЩЕСТВ НА СМАРТФОНАХ */
         @media (max-width: 768px) {
@@ -293,9 +298,8 @@
                 text-align: center !important;
                 padding: 10px 0 !important;
             }
-            h1 {
-                font-size: 26px !important;
-            }
+            h1 { font-size: 26px !important; }
+            .share-modal-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
         }
     </style>
 </head>
@@ -429,7 +433,7 @@
         </button>
     </main>
 
-    <!-- Собственное окно «Поделиться» для ПК с готовыми рабочими ссылками -->
+    <!-- Собственное окно «Поделиться» для ПК с оригинальными SVG иконками -->
     <div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
         <div class="share-modal-content">
             <div class="share-modal-header">
@@ -443,13 +447,10 @@
             <div class="share-modal-grid">
                 <!-- Telegram -->
                 <a href="https://t.me/share/url?url=https://github.io&text=%D0%A1%D0%9B%D0%A3%D0%A8%D0%90%D0%A2%D0%95%D0%9B%D0%AC.%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%20%E2%80%94%20%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B8." target="_blank" class="share-item">
-                    <div class="share-icon tg-bg">✈️</div>
+                    <div class="share-icon tg-bg">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.46 1-.73 1.03-.58.06-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.73-2.5 2.78-2.69.01-.02.01-.11-.04-.16-.05-.05-.13-.03-.19-.02-.08.01-1.37.86-3.88 2.56-.37.25-.7.37-.99.36-.32 0-.94-.17-1.4-.32-.56-.18-1-.28-.96-.59.02-.16.44-.33 1.25-.52 4.9-2.13 8.17-3.53 9.8-4.19.78-.31 1.63-.44 2.16-.44.12 0 .54.02.83.24.42.31.54.72.56.99-.02.13-.01.27-.03.4z"/></svg>
+                    </div>
                     <span>Telegram</span>
-                </a>
-                <!-- WhatsApp -->
-                <a href="https://api.whatsapp.com/send?text=%D0%A1%D0%9B%D0%A3%D0%A8%D0%90%D0%A2%D0%95%D0%9B%D0%AC.%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%20%E2%80%94%20%D0%98%D0%BD%D0%BE%D0%B3%D0%B4%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE%20%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%20%D0%B2%D1%8B%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C%D1%81%D1%8F.%20https://github.io" target="_blank" class="share-item">
-                    <div class="share-icon wa-bg">💬</div>
-                    <span>WhatsApp</span>
     <footer>
         &copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.
     </footer>
@@ -569,6 +570,7 @@
             return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
         }
 
+        // Логика нативного / кастомного открытия
         function shareWebsite() {
             const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
             if (isMobile && navigator.share) {
