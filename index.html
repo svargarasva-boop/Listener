@@ -439,6 +439,7 @@
         </button>
     </main>
 
+    <!-- Исправленное модальное окно шеринга (без текстового инпута) -->
     <div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
         <div class="share-modal-content">
             <div class="share-modal-header">
@@ -660,6 +661,58 @@
                     if (btn) {
                         btn.textContent = 'Успешно скопировано! ✓';
                         btn.style.backgroundColor = '#10b981';
+            if (query.includes('кто ты') || query.includes('ты человек') || query.includes('бот') || query.includes('робот')) {
+                return "Я — текстовый ассистент сайта, помогающий сориентироваться в правилах. Но общаться вы будете с живым, понимающим человеком — вашим Слушателем, который не станет вас перебивать или учить жизни.";
+            }
+            if (query.includes('правил') || query.includes('можно') || query.includes('нельзя') || query.includes('ограничен')) {
+                return "Главное правило — конфиденциальность и свобода выражения чувств. Вы можете говорить о чем угодно. Единственное ограничение — на тарифе «Громоотвод» нельзя переходить на прямые угрозы или личные оскорбления самого Слушателя.";
+            }
+            if (query.includes('привет') || query.includes('здравствуй') || query.includes('добрый день') || query.includes('ку')) {
+                return "Здравствуйте! Я ваш линейный помощник. Спросите меня о ценах, анонимности, длительности сессий или о том, как устроен «Громоотвод».";
+            }
+            if (query.includes('спасибо') || query.includes('благодар') || query.includes('понятно') || query.includes('хорошо')) {
+                return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше и переходите в чат.";
+            }
+
+            return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
+        }
+
+        // Логика вызова окна Поделиться сервисом
+        function shareWebsite() {
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            if (isMobile && navigator.share) {
+                navigator.share({
+                    title: 'Твой Слушатель',
+                    text: 'Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.',
+                    url: siteUrl
+                }).catch(() => {});
+            } else {
+                const modal = document.getElementById('customShareModal');
+                if (modal) modal.style.display = 'flex';
+            }
+        }
+
+        // Функция закрытия окна
+        function closeShareModal() {
+            const modal = document.getElementById('customShareModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        // Логика кнопки Копировать ссылку
+        function copyShareLink() {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(siteUrl).then(() => {
+                    const btn = document.getElementById('modalCopyBtn');
+                    if (btn) {
+                        btn.textContent = 'Успешно скопировано! ✓';
+                        btn.style.backgroundColor = '#10b981';
+                        setTimeout(() => { 
+                            btn.textContent = '🔗 Копировать ссылку на сайт'; 
+                            btn.style.backgroundColor = '#818cf8';
+                        }, 2000);
+                    }
+                });
+            }
         }
     </script>
 </body>
