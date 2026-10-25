@@ -231,7 +231,7 @@
             margin-top: auto;
         }
 
-        /* СТИЛИ ОРИГИНАЛЬНОГО ОКНА ШЕРИНГА С ОРИГИНАЛЬНЫМИ ИКОНКАМИ */
+        /* УЛУЧШЕННЫЕ СТИЛИ ОКНА «ПОДЕЛИТЬСЯ» БЕЗ ТЕКСТОВОГО ПОЛЯ С QR-КОДОМ */
         .share-modal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -248,6 +248,7 @@
             width: 90%; max-width: 440px;
             color: #f1f5f9;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
         .share-modal-header {
             display: flex; justify-content: space-between; align-items: center;
@@ -259,20 +260,32 @@
             font-size: 24px; cursor: pointer; padding: 0; line-height: 1;
         }
         .share-modal-close:hover { color: #f1f5f9; }
-        .share-modal-input-group {
-            display: flex; gap: 8px; margin-bottom: 24px;
+        
+        /* Блок QR-кода */
+        .qr-container {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 16px;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
-        .share-modal-input-group input {
-            flex: 1; background: #0f172a; border: 1px solid #1e293b;
-            color: #f1f5f9; padding: 12px 14px; border-radius: 10px; font-size: 14px; outline: none;
+        .qr-container img {
+            width: 100%;
+            height: 100%;
         }
-        .modal-copy-btn {
-            background: #818cf8; color: #ffffff; border: none;
-            padding: 10px 16px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: bold;
+
+        .modal-action-btn-container {
+            margin-bottom: 25px;
         }
-        .modal-copy-btn:hover { background: #6366f1; }
+
         .share-modal-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; box-sizing: border-box;
+            margin-top: 15px;
         }
         .share-item {
             text-decoration: none; color: #94a3b8; font-size: 12px;
@@ -280,16 +293,16 @@
         }
         .share-item:hover { color: #f1f5f9; }
         .share-icon {
-            width: 52px; height: 52px; border-radius: 50%;
+            width: 48px; height: 48px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             transition: transform 0.2s, filter 0.2s;
         }
-        .share-icon svg {
-            width: 24px; height: 24px; fill: #ffffff;
+        .share-icon img {
+            width: 24px; height: 24px;
         }
         .share-item:hover .share-icon { transform: scale(1.06); filter: brightness(1.1); }
         
-        /* Цвета для 6 иконок */
+        /* Цвета брендов */
         .tg-bg { background: #26A5E4; }
         .wa-bg { background: #25D366; }
         .insta-bg { background: #E1306C; }
@@ -297,19 +310,15 @@
         .x-bg { background: #111111; border: 1px solid #334155; }
         .vk-bg { background: #0077FF; }
 
-        /* ЖЕСТКОЕ ИСПРАВЛЕНИЕ ОТОБРАЖЕНИЯ ПРЕИМУЩЕСТВ НА СМАРТФОНАХ */
         @media (max-width: 768px) {
             .features {
                 grid-template-columns: 1fr !important;
                 padding: 20px 15px !important;
                 gap: 20px !important;
             }
-            .feature-box {
-                text-align: center !important;
-                padding: 10px 0 !important;
-            }
+            .feature-box { text-align: center !important; padding: 10px 0 !important; }
             h1 { font-size: 26px !important; }
-            .share-modal-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .share-modal-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
         }
     </style>
 </head>
@@ -443,24 +452,42 @@
         </button>
     </main>
 
-    <!-- Собственное окно «Поделиться» для ПК с оригинальными SVG иконками -->
+    <!-- Собственное окно «Поделиться» без текстовых полей, с QR и 6 мессенджерами -->
     <div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
         <div class="share-modal-content">
             <div class="share-modal-header">
                 <h3>Поделиться сервисом</h3>
                 <button class="share-modal-close" onclick="closeShareModal()">&times;</button>
             </div>
-            <div class="share-modal-input-group">
-                <input type="text" id="shareLinkInput" readonly value="https://github.io">
-                <button class="modal-copy-btn" onclick="copyShareLink()">Копировать</button>
+            
+            <!-- Контейнер для QR-кода -->
+            <div class="qr-container">
+                <img id="modalQrCodeImg" src="" alt="QR-код сайта">
             </div>
+
+            <!-- Кнопка копирования ссылки -->
+            <div class="modal-action-btn-container">
+                <button class="modal-copy-btn" onclick="copyShareLink()" style="width: 100%; padding: 12px; border-radius: 12px;">Копировать ссылку на сайт</button>
+            </div>
+
             <div class="share-modal-grid">
                 <!-- Telegram -->
-                <a href="https://t.me/share/url?url=https://github.io&text=%D0%A1%D0%9B%D0%A3%D0%A8%D0%90%D0%A2%D0%95%D0%9B%D0%AC.%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%20%E2%80%94%20%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B8." target="_blank" class="share-item">
+                <a href="#" id="share-link-tg" target="_blank" class="share-item">
                     <div class="share-icon tg-bg">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.46 1-.73 1.03-.58.06-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.73-2.5 2.78-2.69.01-.02.01-.11-.04-.16-.05-.05-.13-.03-.19-.02-.08.01-1.37.86-3.88 2.56-.37.25-.7.37-.99.36-.32 0-.94-.17-1.4-.32-.56-.18-1-.28-.96-.59.02-.16.44-.33 1.25-.52 4.9-2.13 8.17-3.53 9.8-4.19.78-.31 1.63-.44 2.16-.44.12 0 .54.02.83.24.42.31.54.72.56.99-.02.13-.01.27-.03.4z"/></svg>
+                        <img src="https://wikimedia.org" alt="TG">
                     </div>
                     <span>Telegram</span>
+                </a>
+                <!-- WhatsApp -->
+                <a href="#" id="share-link-wa" target="_blank" class="share-item">
+                    <div class="share-icon wa-bg">
+                        <img src="https://wikimedia.org" alt="WA">
+                    </div>
+                    <span>WhatsApp</span>
+                </a>
+                <!-- Instagram -->
+                <a href="https://instagram.com" target="_blank" class="share-item">
+                    <div class="share-icon insta-bg">
     <footer>
         &copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.
     </footer>
@@ -574,39 +601,60 @@
                 return "Здравствуйте! Я ваш линейный помощник. Спросите меня о ценах, анонимности, длительности сессий или о том, как устроен «Громоотвод».";
             }
             if (query.includes('спасибо') || query.includes('благодар') || query.includes('понятно') || query.includes('хорошо')) {
-                return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше и переходите в чат.";
+                return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше and переходите в чат.";
             }
 
             return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
         }
 
+        // УЛУЧШЕННОЕ ОТКРЫТИЕ ОКНА ШЕРИНГА (УБРАНО ТЕКСТОВОЕ ПОЛЕ + ДОБАВЛЕН QR)
         function shareWebsite() {
+            const currentUrl = window.location.href;
+            const shareText = "Твой Слушатель — Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.";
+            
             const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            
             if (isMobile && navigator.share) {
                 navigator.share({
                     title: 'Твой Слушатель',
-                    text: 'Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.',
-                    url: window.location.href
+                    text: shareText,
+                    url: currentUrl
                 }).catch(() => {});
             } else {
                 const modal = document.getElementById('customShareModal');
-                if (modal) modal.style.display = 'flex';
+                const qrImg = document.getElementById('modalQrCodeImg');
+                
+                if (modal && qrImg) {
+                    // На лету генерируем красивый и четкий QR-код для текущей ссылки
+                    qrImg.src = "https://qrserver.com" + encodeURIComponent(currentUrl);
+                    
+                    // Обновляем ссылки мессенджеров на лету под реальный URL
+                    document.getElementById('share-link-tg').href = "https://t.me" + encodeURIComponent(currentUrl) + "&text=" + encodeURIComponent(shareText);
+                    document.getElementById('share-link-wa').href = "https://whatsapp.com" + encodeURIComponent(shareText + " " + currentUrl);
+                    document.getElementById('share-link-viber').href = "viber://forward?text=" + encodeURIComponent(shareText + " — " + currentUrl);
+                    document.getElementById('share-link-x').href = "https://x.com" + encodeURIComponent(currentUrl) + "&text=" + encodeURIComponent(shareText);
+                    document.getElementById('share-link-vk').href = "https://vk.com" + encodeURIComponent(currentUrl);
+                    
+                    modal.style.display = 'flex';
+                }
             }
         }
 
+        function closeShareModal() {
+            const modal = document.getElementById('customShareModal');
         function closeShareModal() {
             const modal = document.getElementById('customShareModal');
             if (modal) modal.style.display = 'none';
         }
 
         function copyShareLink() {
-            const linkInput = document.getElementById('shareLinkInput');
-            if (linkInput) {
-                navigator.clipboard.writeText(linkInput.value).then(() => {
+            const currentUrl = window.location.href;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(currentUrl).then(() => {
                     const btn = document.querySelector('.modal-copy-btn');
                     if (btn) {
-                        btn.textContent = 'Скопировано!';
-                        setTimeout(() => { btn.textContent = 'Копировать'; }, 2000);
+                        btn.textContent = 'Ссылка скопирована!';
+                        setTimeout(() => { btn.textContent = 'Копировать ссылку на сайт'; }, 2000);
                     }
                 });
             }
@@ -614,3 +662,4 @@
     </script>
 </body>
 </html>
+
