@@ -4,672 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Твой Слушатель — Сервис конфиденциальной поддержки</title>
-    
-    <!-- Подключение фавиконки (зеленый человечек) -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="shortcut icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-    
-    <style>
-        body {
-            background-color: #0f172a !important;
-            color: #f1f5f9 !important;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            border-bottom: 1px solid #1e293b;
-            background-color: #020617;
-            padding: 15px 20px;
-        }
-        .header-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: #818cf8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .status {
-            font-size: 14px;
-            color: #94a3b8;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            flex-grow: 1;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .promo {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        h1 {
-            font-size: 32px;
-            color: #818cf8;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 25px;
-            background-color: #020617;
-            padding: 30px 20px;
-            border-radius: 16px;
-            border: 1px solid #1e293b;
-            text-align: center; 
-            margin-top: 30px;
-        }
-        .feature-box h3 {
-            color: #818cf8;
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 17px;
-        }
-        .feature-box p {
-            font-size: 13px;
-            color: #94a3b8;
-            margin: 0;
-            line-height: 1.5;
-        }
-        .card {
-            max-width: 460px;
-            margin: 40px auto 10px auto;
-            background-color: #020617;
-            border: 1px solid #1e293b;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-        .tariff-option {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border: 1px solid #1e293b;
-            background-color: #0f172a;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .tariff-option:hover {
-            border-color: #334155;
-        }
-        .tariff-option.active {
-            border: 2px solid #818cf8;
-            background-color: rgba(129, 140, 248, 0.1);
-        }
-        .tariff-option.active.thunder {
-            border: 2px solid #ef4444;
-            background-color: rgba(239, 68, 68, 0.1);
-        }
-        .tariff-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .tariff-option input[type="radio"] {
-            cursor: pointer;
-            accent-color: #818cf8;
-            width: 18px;
-            height: 18px;
-            margin: 0;
-        }
-        .btn-test {
-            width: 100%;
-            background-color: #24a1de;
-            color: #ffffff;
-            font-weight: bold;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s;
-            text-align: center;
-        }
-        .btn-test:hover {
-            background-color: #1d82b2;
-        }
-        .ai-chat-container {
-            max-width: 460px;
-            margin: 30px auto;
-            background-color: #020617;
-            border: 1px solid #1e293b;
-            border-radius: 24px;
-            padding: 20px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-        .ai-chat-messages {
-            height: 200px;
-            overflow-y: auto;
-            border: 1px solid #1e293b;
-            background-color: #0f172a;
-            border-radius: 12px;
-            padding: 10px;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-        .msg {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            line-height: 1.4;
-        }
-        .msg.bot {
-            background-color: #1e293b;
-            color: #f1f5f9;
-            margin-right: 20px;
-            text-align: left;
-        }
-        .msg.user {
-            background-color: #818cf8;
-            color: #ffffff;
-            margin-left: 20px;
-            text-align: right;
-        }
-        .ai-chat-input-area {
-            display: flex;
-            gap: 8px;
-        }
-        .ai-chat-input {
-            flex-grow: 1;
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            border-radius: 8px;
-            padding: 10px;
-            color: #f1f5f9;
-            font-size: 14px;
-        }
-        .ai-chat-input:focus {
-            outline: 1px solid #818cf8;
-        }
-        .ai-chat-submit {
-            background-color: #818cf8;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0 15px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .ai-chat-submit:hover {
-            background-color: #6366f1;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 12px;
-            color: #64748b;
-            border-top: 1px solid #1e293b;
-            background-color: #020617;
-            margin-top: 40px;
-        }
-        .share-modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 6, 23, 0.85);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 9999;
-            backdrop-filter: blur(4px);
-        }
-        .share-modal-content {
-            background: #020617;
-            border: 1px solid #1e293b;
-            border-radius: 24px;
-            padding: 25px;
-            width: 90%; max-width: 440px;
-            color: #f1f5f9;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-        .share-modal-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 20px;
-        }
-        .share-modal-header h3 { margin: 0; font-size: 18px; font-weight: bold; color: #818cf8; }
-        .share-modal-close {
-            background: none; border: none; color: #94a3b8;
-            font-size: 24px; cursor: pointer; padding: 0; line-height: 1;
-        }
-        .share-modal-close:hover { color: #f1f5f9; }
-        .modal-copy-btn {
-            background: #818cf8; color: #ffffff; border: none;
-            padding: 12px 24px; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: bold;
-            width: 100%; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: background 0.2s;
-        }
-        .modal-copy-btn:hover { background: #6366f1; }
-        .share-modal-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; box-sizing: border-box;
-        }
-        .share-item {
-            text-decoration: none; color: #94a3b8; font-size: 12px;
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            cursor: pointer;
-        }
-        .share-item:hover { color: #f1f5f9; }
-        .share-icon {
-            width: 52px; height: 52px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            transition: transform 0.2s, filter 0.2s;
-        }
-        .share-icon svg {
-            width: 24px; height: 24px; fill: #ffffff;
-        }
-        .share-item:hover .share-icon { transform: scale(1.06); filter: brightness(1.1); }
-        .tg-bg { background: #26A5E4; }
-        .wa-bg { background: #25D366; }
-        .insta-bg { background: #E1306C; }
-        .viber-bg { background: #7360F2; }
-        .x-bg { background: #111111; border: 1px solid #334155; }
-        .vk-bg { background: #0077FF; }
-        .qrcode-container {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #1e293b;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #qrcode {
-            margin-top: 15px;
-            padding: 12px;
-            background: #fff;
-            border-radius: 12px;
-            display: inline-block;
-        }
-        @media (max-width: 768px) {
-            .features {
-                grid-template-columns: 1fr !important;
-                padding: 20px 15px !important;
-                gap: 20px !important;
-            }
-            .feature-box {
-                text-align: center !important;
-                padding: 10px 0 !important;
-            }
-            h1 { font-size: 26px !important; }
-            .share-modal-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="header-container">
-            <div class="logo">СЛУШАТЕЛЬ.онлайн</div>
-            <div class="status"><span class="status-dot"></span> Свободен и готов слушать</div>
-        </div>
-    </header>
-    <main>
-        <div id="promo-section">
-            <div class="promo">
-                <h1>Иногда нужно просто выговориться.<br>Без осуждения.</h1>
-                <p style="color: #94a3b8; font-size: 16px; line-height: 1.6; text-align: center;">Я не буду учить вас жизни, давать советы или перебивать. Я здесь для того, чтобы полностью, внимательно и конфиденциально выслушать всё, что накопилось.</p>
-            </div>
-            <div class="features">
-                <div class="feature-box">
-                    <h3>Анонимность</h3>
-                    <p>Без регистрации и указания ваших реальных данных.</p>
-                </div>
-                <div class="feature-box">
-                    <h3>Любые эмоции</h3>
-                    <p>Вы можете злиться, плакать, ругаться или просто молчать.</p>
-                </div>
-                <div class="feature-box">
-                    <h3>Конфиденциально</h3>
-                    <p>Поток идет напрямую, разговор нигде не сохраняется.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="payment-section" class="card">
-            <h2 style="text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 20px;">Выберите тариф сессии</h2>
-            
-            <div class="tariff-option active" id="t1" onclick="selectTariff('t1', 'Супер-короткий звонок (3 минуты) за 3 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t1" checked>
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Супер-короткий звонок (3 минуты)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Быстро сбросить напряжение</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">3 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t2" onclick="selectTariff('t2', 'Экспресс-звонок (5 минут) за 5 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t2">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Экспресс-звонок (5 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Кратко изложить суть проблемы</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">5 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t3" onclick="selectTariff('t3', 'Быстрый звонок (10 минут) за 10 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t3">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Быстрый звонок (10 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Выговорить самое главное</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">10 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t4" onclick="selectTariff('t4', 'Короткий звонок (15 минут) за 15 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t4">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Короткий звонок (15 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Выпустить пар и выговориться</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">15 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t5" onclick="selectTariff('t5', 'Стандартная сессия (30 минут) за 30 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t5">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block;">Стандартная сессия (30 минут)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Подробно рассказать свою историю</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#818cf8;">30 USD</span>
-            </div>
-
-            <div class="tariff-option" id="t6" onclick="selectTariff('t6', '⚡ ТАРИФ ГРОМООТВОД (10 мин) за 50 USD')">
-                <div class="tariff-left">
-                    <input type="radio" name="time-tariff" id="radio-t6">
-                    <div style="margin-left: 10px;">
-                        <strong style="display:block; color:#f87171;">⚡ ТАРИФ «ГРОМООТВОД» (10 мин)</strong>
-                        <span style="font-size:12px; color:#94a3b8;">Можно орать и сливать ярость (в рамках правил)</span>
-                    </div>
-                </div>
-                <span style="font-size:20px; font-weight:bold; color:#ef4444;">50 USD</span>
-            </div>
-
-            <button class="btn-test" onclick="redirectToTelegram()">Заказать сессию через Telegram</button>
-        </div>
-        <div class="ai-chat-container">
-            <h3 style="text-align: center; margin-top: 0; color: #818cf8; font-size: 18px;">Задать вопрос ИИ-ассистенту</h3>
-            <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-bottom: 15px;">Задайте ИИ любой вопрос о тарифах, часе работы или правилах.</p>
-            
-            <div class="ai-chat-messages" id="chatMessages">
-                <div class="msg bot">Здравствуйте! Я ваш ИИ-консультант. Задайте любой вопрос, я отвечу человеческим языком.</div>
-            </div>
-            
-            <div class="ai-chat-input-area">
-                <input type="text" id="chatInput" class="ai-chat-input" placeholder="Спросите меня о тарифах, часе работы или правилах..." onkeypress="handleKeyPress(event)">
-                <button class="ai-chat-submit" onclick="sendMessageToSmartAI()">Отправить</button>
-            </div>
-        </div>
-
-        <button onclick="shareWebsite()" style="background: none; border: 1px solid #1e293b; color: #94a3b8; padding: 12px 24px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin: 40px auto 0 auto; font-size: 14px; font-weight: 500; transition: all 0.2s;">
-            🔗 Поделиться этим сервисом
-        </button>
-    </main>
-
-    <!-- Исправленное модальное окно (чистые кнопки без текстового поля) -->
-    <div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
-        <div class="share-modal-content">
-            <div class="share-modal-header">
-                <h3>Поделиться сервисом</h3>
-                <button class="share-modal-close" onclick="closeShareModal()">&times;</button>
-            </div>
-            
-            <button class="modal-copy-btn" id="modalCopyBtn" onclick="copyShareLink()">
-                🔗 Копировать ссылку
-            </button>
-            
-            <div class="share-modal-grid">
-    <!-- Кнопка Telegram -->
-    <a id="share-tg" href="#" target="_blank" class="share-item">
-        <div class="share-icon share-icon-tg-bg">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.46 1-.73 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1.65-.35-1.22-1.62.15-2.73-2.5 2.78-2.69.01-.02.01-.11-.04-.16-.05-.05-.13-.03-.19-.02-.08.01-1.37.86-3.88 2.56-37.25-.7.37-.99.36-.32 0-.94-.17-1.4-.32-.56-.18-1.-28-.96-59.02-.16-.44.33 1.25-.52 4.9-2.13 8.17-3.53 9.8-4.19.78-.31 1.63-.44 2.16-.44.12 0 .44.02.83.24.42.31.54.72.56.99-.02.13-.01.27-.03.42z"/></svg>
-        </div>
-        <span>Telegram</span>
-    </a>
-
-    <!-- Кнопка WhatsApp -->
-    <a id="share-wa" href="#" target="_blank" class="share-item">
-        <div class="share-icon share-icon-wa-bg">
-            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.178.001 6.169 1.24 8.413 3.488 2.245 2.248 3.481 5.239 3.482 8.415-.004 6.516-5.34 11.965-11.91 11.965c-2.001-.002-3.963-.537-5.704-1.467L0 24zm6.167-2.083c1.647.979 3.258 1.487 4.922 1.488 5.417 0 9.825-4.41 9.828-9.828.001-2.625-1.023-5.093-2.885-6.958-1.862-1.865-4.335-2.891-6.963-2.892-5.42 0-9.829 4.41-9.832 9.829-.001 1.775.475 3.428 1.378 4.793L1.03 21.054l4.717-1.9c.001 0 .001 0 .021.0135-7.53c-.295-.148-1.748-.863-2.018-.962-.27-.099-.467-.148-.663-.148-.197-.297-.762-.963-.934 1.16-.172.199-.304.223-.503.207-1.149-1.255-.462-2.39-1.475-.863-.788-1.48-1.761-1.853-2.059-173-.218-.458.13-.606-.134-.133.297-.446-.521.151-.172-.2.296-.3-.495.099-.198.05-.372-.025-.521-.075-.148-.663-1.597-.908-2.192-.239-.574-.482-.496-.663-.505-.171-.007-.368-.008-.565-.008-.197 0-.517.074-.787.372-.269.297-1.03 1.007-1.03 2.454 0 1.446 1.052 2.842 1.199 3.041.148.198 2.072 3.165 5.019 4.437.702.302 1.25.481 1.678.619.704.224 1.344.193 1.85.118.563-.083 1.748-.713 1.994-1.404.245-.691.245-1.289.172-1.404-.074-.115-.27-.198-.566-.347z"/></svg>
-        </div>
-        <span>WhatsApp</span>
-    </a>
-
-    <!-- Кнопка Instagram (была рабочей) -->
-    <a href="https://instagram.com" target="_blank" class="share-item">
-        <div class="share-icon share-icon-insta-bg">
-            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.617 6.78 6.979 6.98.1.014.3.015.412.015.112 0 .313-.001.412-.015 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C13.668.014 13.259 0 10 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-        </div>
-        <span>Instagram</span>
-    </a>
-
-    <!-- Кнопка Viber -->
-    <a id="share-viber" href="#" target="_blank" class="share-item">
-        <div class="share-icon share-icon-viber-bg">
-            <svg viewBox="0 0 24 24"><path d="M19.89 2.052c4.807.463 9.405 2.585 10.158 2.125h.4.3-.923 6.223-.19.378-.467-.212-.303-.507-.156-.816.75-1.579.437-9.992-.614-3.738-3.879-6.395-7.686-6.002-1.844.192-3.418.99-4.708 2.336-.264.275-.521.258-.755-.03-.223-.275-.2...553.07-.841c7.147 4.14 8.47 3.01 9.89 2.852zm-1.823 4.17c3.19-.508 4.342.27 1.314 1.16 2.576-.176.375-.444.426-.74.196-.282-.218-.702-.12-.782.41-.818.513-1.691.316-2.593-.45-2.072-2.369-3.284-.444-2.871-.156-1.442.545-2.001 1.116-.277.213-.518.286-.717-.015-.224-.282-.19-.56-.095-.25 1.002-1.026 2.17-1.745 3.181-2.494zm1.923 6.942c.026-.59.183-1.127.688-1.543.51-.5 1.135-.615 1.777-.84.664.238.868 1.442-.239.626 1.442-.239 1.328 1.543..539.255 1.542.233.112.093.14.233-.14.378m3.626 5.864c-.496.11-.937-.099-1.285-1.092-2.128-2.155-3.176-3.243-.16-.165-.333-.217-.557-.145-.632.203-1.23.14-1.794-.238-1.464-.982-2.607-2.274-3.518-3.793-.46-.767-.58-1.597-.184-2.428.093-.195.074-.356-.062-.51C2.535 7.42 1.956 6.785 1.385 6.136.997-.534 1.18-.351 1.554.06c.404.444.815.862.35 1.173-.049.57.502 1.117 1.03 1.674 1.546.195.18.252.378.14.63-.3682-.294 1.378.077 2.052.126.228.324.364.577.466 1.252.507 2.375 1.218 3.377 2.176 1.026 1.032 1.8 2.247 2.377 3.606.096.248.435.474.55.666.331 1.328.277 1.968-.07.27-.146.47-.094.669.13.56.611 1.143 1.196 1.706 1.802.348.375.348.847-.01 1.205-1.068 1.066-2.138 2.13-1.21 1.19-.344.341-.74.453-1.246.533zm-26.365-.01.594.161.64.475.05.341-.122-.597-.482-.637.624.868-1.129-.12-.1.5-.644.226-.319-.181-.6.-109-.815-.289-.214.568-.168..795.122.125.161.258.217/.438.225z"/></svg>
-        </div>
-        <span>Viber</span>
-    </a>
-
-    <!-- Кнопка X (Twitter) -->
-    <a id="share-x" href="#" target="_blank" class="share-item">
-        <div class="share-icon share-icon-x-bg">
-            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </div>
-        <span>X</span>
-    </a>
-
-    <!-- Кнопка VK -->
-    <a id="share-vk" href="#" target="_blank" class="share-item">
-        <div class="share-icon share-icon-vk-bg">
-            <svg viewBox="0 0 24 24"><path d="M15.629 24c-5.83 0-9.917-4.004-14.152-12.443C-.067 9.774 7.5 2.923 7.5H12.625c1.65 0 2.2.875 1.626 3.864 4.417 4.163 4.417 8.163 5.325.875.76.275.992.508 1.128-.15c1-.628-1.503-1.628-1.503H6-.9c.43 0-.7.282-.43.63C11.134 5.96 12.386 5 15.65 5c3.275 0 4.15 1.5 4.15 3.327v5.6c0 1.155 1.35 1.035 1.625-2.25 4.316-7.075 4.316-7.075.4-2.575-1.782h2.825c1.175 0 2.275.975 1.875 2.5-1.65 3.12-6.5 11.7-6.5 11.7-.55.9-1.175 1.5-2.275 1.5z"/></svg>
-        </div>
-        <span>VK</span>
-    </a>
-</div>
-
-    <footer>
-        &copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.
-    </footer>
-
-    <script src="https://cloudflare.com"></script>
-    <script>
-        let selectedTariffText = 'Супер-короткий звонок (3 минуты) за 3 USD'; 
-        const siteUrl = window.location.origin + window.location.pathname;
-        const shareText = "СЛУШАТЕЛЬ.онлайн — Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.";
-
-        window.addEventListener('DOMContentLoaded', () => {
-            // Инициализация QR-кода строго после полной загрузки DOM-дерева
-            new QRCode(document.getElementById("qrcode"), {
-                text: siteUrl,
-                width: 140,
-                height: 140,
-                colorDark: "#020617",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            
-            // Динамическая сборка ссылок для мессенджеров (конфликт с Instagram устранен)
-document.getElementById('share-tg').href = `https://t.me{encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
-document.getElementById('share-wa').href = `https://whatsapp.com{encodeURIComponent(shareText + ' ' + siteUrl)}`;
-document.getElementById('share-viber').href = `viber://forward?text=${encodeURIComponent(shareText + ' ' + siteUrl)}`;
-document.getElementById('share-x').href = `https://x.com{encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
-document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(siteUrl)}&title=${encodeURIComponent(shareText)}`;
-
-        });
-
-        function selectTariff(tariffId, tariffText) {
-            ['t1', 't2', 't3', 't4', 't5', 't6'].forEach(id => {
-                document.getElementById(id).classList.remove('active', 'thunder');
-            });
-            
-            selectedTariffText = tariffText;
-            const element = document.getElementById(tariffId);
-            
-            if (tariffId === 't6') {
-                element.classList.add('active', 'thunder');
-            } else {
-                element.classList.add('active');
-            }
-            document.getElementById('radio-' + tariffId).checked = true;
-        }
-
-        function redirectToTelegram() {
-            const message = "Здравствуйте! Я хочу заказать сессию. Выбранный тариф: " + selectedTariffText;
-            const telegramUrl = "https://t.me"; // Замените на прямую ссылку к вашему контакту/боту
-            
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(message).then(() => {
-                    alert("Название тарифа скопировано! Пожалуйста, вставьте его в чате (Ctrl+V или долгий тап -> Вставить).");
-                    window.open(telegramUrl, '_blank');
-                }).catch(() => {
-                    window.open(telegramUrl, '_blank');
-                });
-            } else {
-                window.open(telegramUrl, '_blank');
-            }
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessageToSmartAI();
-            }
-        }
-
-        function sendMessageToSmartAI() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim();
-            if (!text) return;
-
-            appendMessage(text, 'user');
-            input.value = '';
-
-            const chatMessages = document.getElementById('chatMessages');
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = "msg bot";
-            loadingDiv.id = "ai-loading-status";
-            loadingDiv.style = "background-color: #1e293b; color: #94a3b8; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-right: 20px;";
-            loadingDiv.innerText = "ИИ подбирает ответ...";
-            chatMessages.appendChild(loadingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            setTimeout(() => {
-                const statusEl = document.getElementById("ai-loading-status");
-                if (statusEl) statusEl.remove();
-                const botResponse = generateLocalAIResponse(text);
-                appendMessage(botResponse, 'bot');
-            }, 500);
-        }
-
-        function appendMessage(text, sender) {
-            const chatMessages = document.getElementById('chatMessages');
-            const msgDiv = document.createElement('div');
-            msgDiv.className = "msg " + sender;
-            msgDiv.style = sender === 'user' 
-                ? "background-color: #818cf8; color: #ffffff; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-left: 20px; text-align: right;" 
-                : "background-color: #1e293b; color: #f1f5f9; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; margin-right: 20px;";
-            msgDiv.innerText = text;
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function generateLocalAIResponse(input) {
-            const query = input.toLowerCase();
-
-            if (query.includes('час') || query.includes('60 мин') || query.includes('длинн') || query.includes('дольше')) {
-                return "Да, вы можете заказать сессию на 1 час или даже дольше. На сайте указаны базовые тарифы до 30 минут, но индивидуальное время мы легко согласуем. Перейдите в Telegram, и мы подберем удобный для вас слот.";
-            }
-            if (query.includes('тариф') || query.includes('цен') || query.includes('сколько стоит') || query.includes('стоимость') || query.includes('деньг') || query.includes('плат')) {
-                return "У нас действуют гибкие тарифы: от коротких звонков по 3, 5, 10 и 15 минут до полноценных сессий на 30 минут. Также есть специальный тариф «Громоотвод» за 50 USD. Выбирайте любой прямо на странице!";
-            }
-            if (query.includes('аноним') || query.includes('секрет') || query.includes('данные') || query.includes('узнает') || query.includes('конфиденц') || query.includes('безопасн')) {
-                return "Ваша анонимность — наш главный приоритет. Сервис не требует никаких регистраций, указания имен или телефонов. Диалог идет напрямую в Telegram, переписка нигде не сохраняется и не передается третьим лицам.";
-            }
-            if (query.includes('громоотвод') || query.includes('орать') || query.includes('злить') || query.includes('руга') || query.includes('крича') || query.includes('мат')) {
-                return "Тариф «Громоотвод» за 50 USD создан как раз для того, чтобы выплеснуть сильные эмоции. На этой сессии вам разрешено кричать, плакать, ругаться и сливать злость. Слушатель примет любой ваш шторм без осуждения.";
-            }
-            if (query.includes('как заказать') || query.includes('как начать') || query.includes('купить') || query.includes('заказ') || query.includes('кнопк')) {
-                return "Всё просто: кликните по нужному тарифу в карточке выше (он выделится рамкой), а затем нажмите кнопку «Заказать сессию через Telegram». Название тарифа скопируется, и вы перейдете в чат.";
-            }
-            if (query.includes('кто ты') || query.includes('ты человек') || query.includes('бот') || query.includes('робот')) {
-                return "Я — текстовый ассистент сайта, помогающий сориентироваться в правилах. Но общаться вы будете с живым, понимающим человеком — вашим Слушателем, который не станет вас перебивать или учить жизни.";
-            }
-            if (query.includes('правил') || query.includes('можно') || query.includes('нельзя') || query.includes('ограничен')) {
-                return "Главное правило — конфиденциальность и свобода выражения чувств. Вы можете говорить о чем угодно. Единственное ограничение — на тарифе «Громоотвод» нельзя переходить на прямые угрозы или личные оскорбления самого Слушателя.";
-            }
-            if (query.includes('привет') || query.includes('здравствуй') || query.includes('добрый день') || query.includes('ку')) {
-                return "Здравствуйте! Я ваш линейный помощник. Спросите меня о ценах, анонимности, длительности сессий или о том, как устроен «Громоотвод».";
-            }
-            if (query.includes('спасибо') || query.includes('благодар') || query.includes('понятно') || query.includes('хорошо')) {
-                return "Рад помочь! Если вы чувствуете, что накопилось и нужно выговориться — выбирайте подходящее время в карточке выше и переходите в чат.";
-            }
-
-            return "Мы создали этот сервис, чтобы вы могли безопасно разделить любые свои мысли и переживания, не боясь критики. Нажмите кнопку заказа, перейдите к нам в Telegram, и Слушатель ответит на этот вопрос подробно лично в чате.";
-        }
-
-        function shareWebsite() {
-            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            if (isMobile && navigator.share) {
-                navigator.share({
-                    title: 'Твой Слушатель',
-                    text: 'Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.',
-                    url: siteUrl
-                }).catch(() => {});
-            } else {
-                const modal = document.getElementById('customShareModal');
-                if (modal) modal.style.display = 'flex';
-            }
-        }
-
-        function closeShareModal() {
-            const modal = document.getElementById('customShareModal');
-            if (modal) modal.style.display = 'none';
-        }
-
-        function copyShareLink() {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(siteUrl).then(() => {
-                    const btn = document.getElementById('modalCopyBtn');
-                    if (btn) {
-                        btn.textContent = 'Успешно скопировано! ✓';
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Твой Слушатель — Сервис конфиденциальной поддержки</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
@@ -726,8 +60,6 @@ document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(si
         .viber-bg { background: #7360F2; }
         .x-bg { background: #111111; border: 1px solid #334155; }
         .vk-bg { background: #0077FF; }
-        .qrcode-container { margin-top: 25px; padding-top: 20px; border-top: 1px solid #1e293b; display: flex; flex-direction: column; align-items: center; }
-        #qrcode { margin-top: 15px; padding: 12px; background: #fff; border-radius: 12px; display: inline-block; }
         @media (max-width: 768px) {
             .features { grid-template-columns: 1fr !important; padding: 20px 15px !important; gap: 20px !important; }
             .feature-box { text-align: center !important; padding: 10px 0 !important; }
@@ -757,26 +89,82 @@ document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(si
         </div>
         <div id="payment-section" class="card">
             <h2 style="text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 20px;">Выберите тариф сессии</h2>
+            
+            <!-- Тариф 1 -->
             <div class="tariff-option active" id="t1" onclick="selectTariff('t1', 'Супер-короткий звонок (3 минуты) за 3 USD')">
-                <div class="tariff-left"><input type="radio" name="time-tariff" id="radio-t1" checked><div style="margin-left: 10px;"><strong style="display:block;">Супер-короткий звонок (3 минуты)</strong><span style="font-size:12px; color:#94a3b8;">Быстро сбросить напряжение</span></div></div><span style="font-size:20px; font-weight:bold; color:#818cf8;">3 USD</span>
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t1" checked>
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Супер-короткий звонок (3 минуты)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Быстро сбросить напряжение</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">3 USD</span>
             </div>
+            
+            <!-- Тариф 2 -->
             <div class="tariff-option" id="t2" onclick="selectTariff('t2', 'Экспресс-звонок (5 минут) за 5 USD')">
-                <div class="tariff-left"><input type="radio" name="time-tariff" id="radio-t2"><div style="margin-left: 10px;"><strong style="display:block;">Экспресс-звонок (5 минут)</strong><span style="font-size:12px; color:#94a3b8;">Кратко изложить суть проблемы</span></div></div><span style="font-size:20px; font-weight:bold; color:#818cf8;">5 USD</span>
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t2">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Экспресс-звонок (5 минут)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Кратко изложить суть проблемы</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">5 USD</span>
             </div>
+            
+            <!-- Тариф 3 -->
             <div class="tariff-option" id="t3" onclick="selectTariff('t3', 'Быстрый звонок (10 минут) за 10 USD')">
-                <div class="tariff-left"><input type="radio" name="time-tariff" id="radio-t3"><div style="margin-left: 10px;"><strong style="display:block;">Быстрый звонок (10 минут)</strong><span style="font-size:12px; color:#94a3b8;">Выговорить самое главное</span></div></div><span style="font-size:20px; font-weight:bold; color:#818cf8;">10 USD</span>
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t3">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Быстрый звонок (10 минут)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Выговорить самое главное</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">10 USD</span>
             </div>
+            <!-- Тариф 4 -->
             <div class="tariff-option" id="t4" onclick="selectTariff('t4', 'Короткий звонок (15 минут) за 15 USD')">
-                <div class="tariff-left"><input type="radio" name="time-tariff" id="radio-t4"><div style="margin-left: 10px;"><strong style="display:block;">Короткий звонок (15 минут)</strong><span style="font-size:12px; color:#94a3b8;">Выпустить пар и выговориться</span></div></div><span style="font-size:20px; font-weight:bold; color:#818cf8;">15 USD</span>
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t4">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Короткий звонок (15 минут)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Выпустить пар и выговориться</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">15 USD</span>
             </div>
+            
+            <!-- Тариф 5 -->
             <div class="tariff-option" id="t5" onclick="selectTariff('t5', 'Стандартная сессия (30 минут) за 30 USD')">
-                <div class="tariff-left"><input type="radio" name="time-tariff" id="radio-t5"><div style="margin-left: 10px;"><strong style="display:block;">Стандартная сессия (30 минут)</strong><span style="font-size:12px; color:#94a3b8;">Подробно рассказать свою историю</span></div></div><span style="font-size:20px; font-weight:bold; color:#818cf8;">30 USD</span>
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t5">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block;">Стандартная сессия (30 минут)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Подробно рассказать свою историю</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#818cf8;">30 USD</span>
             </div>
+            
+            <!-- Тариф 6 -->
             <div class="tariff-option" id="t6" onclick="selectTariff('t6', '⚡ ТАРИФ ГРОМООТВОД (10 мин) за 50 USD')">
-                <div class="tariff-left"><input type="radio" name="time-tariff" id="radio-t6"><div style="margin-left: 10px;"><strong style="display:block; color:#f87171;">⚡ ТАРИФ «ГРОМООТВОД» (10 мин)</strong><span style="font-size:12px; color:#94a3b8;">Можно орать и сливать ярость (в рамках правил)</span></div></div><span style="font-size:20px; font-weight:bold; color:#ef4444;">50 USD</span>
+                <div class="tariff-left">
+                    <input type="radio" name="time-tariff" id="radio-t6">
+                    <div style="margin-left: 10px;">
+                        <strong style="display:block; color:#f87171;">⚡ ТАРИФ «ГРОМООТВОД» (10 мин)</strong>
+                        <span style="font-size:12px; color:#94a3b8;">Можно орать и сливать ярость (в рамках правил)</span>
+                    </div>
+                </div>
+                <span style="font-size:20px; font-weight:bold; color:#ef4444;">50 USD</span>
             </div>
+            
             <button class="btn-test" onclick="redirectToTelegram()">Заказать сессию через Telegram</button>
         </div>
+
+        <!-- Интерактивный ИИ-чат -->
         <div class="ai-chat-container">
             <h3 style="text-align: center; margin-top: 0; color: #818cf8; font-size: 18px;">Задать вопрос ИИ-ассистенту</h3>
             <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-bottom: 15px;">Задайте ИИ любой вопрос о тарифах, часе работы или правилах.</p>
@@ -788,6 +176,7 @@ document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(si
                 <button class="ai-chat-submit" onclick="sendMessageToSmartAI()">Отправить</button>
             </div>
         </div>
+        
         <button onclick="shareWebsite()" style="background: none; border: 1px solid #1e293b; color: #94a3b8; padding: 12px 24px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin: 40px auto 0 auto; font-size: 14px; font-weight: 500; transition: all 0.2s;">🔗 Поделиться этим сервисом</button>
     </main>
     <div id="customShareModal" class="share-modal" style="display: none;" onclick="if(event.target===this) closeShareModal()">
@@ -796,38 +185,63 @@ document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(si
                 <h3>Поделиться сервисом</h3>
                 <button class="share-modal-close" onclick="closeShareModal()">&times;</button>
             </div>
-            <button class="modal-copy-btn" id="modalCopyBtn" onclick="copyShareLink()">🔗 Копировать ссылку</button>
+            <button class="modal-copy-btn" id="modalCopyBtn" onclick="copyShareLink()">🔗 Копировать ссылку на сайт</button>
             <div class="share-modal-grid">
-                <a id="share-tg" href="#" target="_blank" class="share-item"><div class="share-icon tg-bg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.46 1-.73 1.03-.58.06-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.73-2.5 2.78-2.69.01-.02.01-.11-.04-.16-.05-.05-.13-.03-.19-.02-.08.01-1.37.86-3.88 2.56-.37.25-.7.37-.99.36-.32 0-.94-.17-1.4-.32-.56-.18-1-.28-.96-.59.02-.16.44-.33 1.25-.52 4.9-2.13 8.17-3.53 9.8-4.19.78-.31 1.63-.44 2.16-.44.12 0 .54.02.83.24.42.31.54.72.56.99-.02.13-.01.27-.03.4z"/></svg></div><span>Telegram</span></a>
-                <a id="share-wa" href="#" target="_blank" class="share-item"><div class="share-icon wa-bg"><svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.178.001 6.169 1.24 8.413 3.488 2.245 2.248 3.481 5.239 3.482 8.415-.004 6.616-5.34 11.965-11.91 11.965c-2.001-.002-3.963-.507-5.704-1.467L0 24zm6.59-4.846c1.66.986 3.288 1.487 4.922 1.488 5.417 0 9.825-4.41 9.828-9.828.001-2.625-1.023-5.093-2.885-6.958-1.862-1.865-4.335-2.891-6.963-2.892-5.42 0-9.829 4.41-9.832 9.829-.001 1.77.475 3.424 1.378 4.793L1.93 21.054l4.717-1.9c.001 0 .001 0 0 0zm11.35-7.53c-.295-.148-1.748-.863-2.018-.962-.27-.099-.467-.148-.663.148-.197.297-.762.963-.934 1.16-.172.199-.344.223-.64.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.663-1.597-.908-2.192-.239-.574-.482-.496-.663-.505-.171-.007-.368-.008-.565-.008-.197 0-.517.074-.787.372-.269.297-1.03 1.007-1.03 2.454 0 1.446 1.052 2.842 1.199 3.041.148.198 2.072 3.165 5.019 4.437.702.302 1.25.483 1.678.619.704.224 1.344.193 1.85.118.563-.083 1.748-.713 1.994-1.404.245-.693.245-1.289.172-1.404-.074-.115-.27-.198-.566-.347z"/></svg></div><span>WhatsApp</span></a>
-                <a id="share-insta" href="https://instagram.com" target="_blank" class="share-item"><div class="share-icon insta-bg"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div><span>Instagram</span></a>
-                <a id="share-viber" href="#" target="_blank" class="share-item"><div class="share-icon viber-bg"><svg viewBox="0 0 24 24"><path d="M9.89 2.052c4.807-.463 9.405 2.585 10.158 7.394.342 2.185.048 4.3-.923 6.223-.19.378-.456.467-.803.226-.307-.212-.303-.507-.156-.816.75-1.579.97-3.252.684-4.992-.614-3.738-3.879-6.395-7.666-6.002-1.844.192-3.418.99-4.708 2.336-.264.275-.521.258-.755-.03-.223-.275-.2-.553.07-.841C7.147 4.14 8.47 3.01 9.89 2.052zm-1.823 4.17c3.19-.508 6.37 1.34 7.027 4.542.27 1.314.116 2.576-.439 3.76-.176.375-.444.426-.74.196-.282-.218-.261-.502-.12-.782.41-.818.513-1.691.316-2.593-.45-2.072-2.369-3.284-4.444-2.871-.786.156-1.442.545-2.001 1.116-.277.283-.538.286-.777-.015-.224-.282-.19-.56.095-.85 1.002-1.026 2.17-1.745 3.383-2.494zm3.923 6.942c.026-.59.183-1.127.608-1.543.51-.5 1.135-.615 1.777-.384.664.238.868.749.626 1.442-.239.684-.664 1.23-1.328 1.543-.539.255-1.082.164-1.543-.22-.112-.093-.14-.233-.14-.378zm3.626 5.864c-.496.11-.937-.099-1.285-.455-1.059-1.082-2.128-2.155-3.176-3.243-.16-.165-.333-.217-.557-.145-.632.203-1.23.14-1.794-.238-1.464-.982-2.607-2.274-3.518-3.793-.46-.767-.58-1.597-.184-2.428.093-.195.074-.356-.062-.51C2.535 7.42 1.956 6.786 1.385 6.14c-.38-.43-.377-.923.013-1.32 1.045-1.065 2.102-2.12 3.167-3.167.35-.344.815-.365 1.173-.049.57.502 1.117 1.03 1.674 1.546.195.18.252.378.14.63-.3.682-.294 1.378.077 2.052.126.228.324.364.577.466 1.252.502 2.375 1.218 3.327 2.176 1.026 1.032 1.8 2.247 2.327 3.606.096.248.243.435.474.55.666.331 1.328.277 1.968-.07.27-.146.47-.094.669.13.56.611 1.143 1.196 1.706 1.802.348.375.348.847-.01 1.205-1.068 1.066-2.138 2.13-3.21 3.19-.344.341-.774.453-1.246.337zm-6.208-4.7c.365-.01.594.161.64.475.05.341-.122.597-.482.637-.624.068-1.129-.12-1.5-.644-.226-.319-.181-.6.109-.815.289-.214.568-.168.795.122.125.161.258.217.438.225z"/></svg></div><span>Viber</span></a>
-                <a id="share-x" href="#" target="_blank" class="share-item"><div class="share-icon x-bg"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div><span>X</span></a>
-                <a id="share-vk" href="#" target="_blank" class="share-item"><div class="share-icon vk-bg"><svg viewBox="0 0 24 24"><path d="M15.029 24c-5.83 0-9.917-4.004-14.152-12.443C-.067 9.774.7 7.5 2.923 7.5h2.825c1.65 0 2.2.875 2.62 1.874 1.626 3.864 4.417 8.163 4.417 8.163.525.875.76.626.76-.002V8.998c-.126-1.503-.997-1.503-1.628-1.503h-.9c-.43 0-.67-.282-.43-.63C11.134 5.96 12.986 5 15.65 5c3.275 0 4.15 1.054 4.15 3.327v5.6c0 1.15.5 1.35 1.05.35 1.625-2.85 4.316-7.075 4.316-7.075.4-.875.925-1.702 2.575-1.702h2.825c1.875 0 2.275.925 1.875 2.25-1.075 2.65-6.05 11.2-6.05 11.2-.55.975-1.325 1.5-2.225 1.5h-3.187z"/></svg></div><span>VK</span></a>
-            </div>
-            <div class="qrcode-container">
-                <span style="font-size: 13px; font-weight: 600; color: #94a3b8;">Или отсканируйте камерой смартфона:</span>
-                <div id="qrcode"></div>
+                
+                <!-- Кнопка Telegram -->
+                <a id="share-tg" href="#" target="_blank" class="share-item">
+                    <div class="share-icon tg-bg">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.46 1-.73 1.03-.58.06-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.73-2.5 2.78-2.69.01-.02.01-.11-.04-.16-.05-.05-.13-.03-.19-.02-.08.01-1.37.86-3.88 2.56-.37.25-.7.37-.99.36-.32 0-.94-.17-1.4-.32-.56-.18-1-.28-.96-.59.02-.16.44-.33 1.25-.52 4.9-2.13 8.17-3.53 9.8-4.19.78-.31 1.63-.44 2.16-.44.12 0 .54.02.83.24.42.31.54.72.56.99-.02.13-.01.27-.03.4z"/></svg>
+                    </div>
+                    <span>Telegram</span>
+                </a>
+
+                <!-- Кнопка WhatsApp -->
+                <a id="share-wa" href="#" target="_blank" class="share-item">
+                    <div class="share-icon wa-bg">
+                        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.178.001 6.169 1.24 8.413 3.488 2.245 2.248 3.481 5.239 3.482 8.415-.004 6.616-5.34 11.965-11.91 11.965c-2.001-.002-3.963-.507-5.704-1.467L0 24zm6.59-4.846c1.66.986 3.288 1.487 4.922 1.488 5.417 0 9.825-4.41 9.828-9.828.001-2.625-1.023-5.093-2.885-6.958-1.862-1.865-4.335-2.891-6.963-2.892-5.42 0-9.829 4.41-9.832 9.829-.001 1.77.475 3.424 1.378 4.793L1.93 21.054l4.717-1.9c.001 0 .001 0 0 0zm11.35-7.53c-.295-.148-1.748-.863-2.018-.962-.27-.099-.467-.148-.663.148-.197.297-.762.963-.934 1.16-.172.199-.344.223-.64.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.663-1.597-.908-2.192-.239-.574-.482-.496-.663-.505-.171-.007-.368-.008-.565-.008-.197 0-.517.074-.787.372-.269.297-1.03 1.007-1.03 2.454 0 1.446 1.052 2.842 1.199 3.041.148.198 2.072 3.165 5.019 4.437.702.302 1.25.483 1.678.619.704.224 1.344.193 1.85.118.563-.083 1.748-.713 1.994-1.404.245-.693.245-1.289.172-1.404-.074-.115-.27-.198-.566-.347z"/></svg>
+                    </div>
+                    <span>WhatsApp</span>
+                </a>
+
+                <!-- Кнопка Instagram -->
+                <a id="share-insta" href="https://instagram.com" target="_blank" class="share-item">
+                    <div class="share-icon insta-bg">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </div>
+                    <span>Instagram</span>
+                </a>
+
+                <!-- Кнопка Viber -->
+                <a id="share-viber" href="#" target="_blank" class="share-item">
+                    <div class="share-icon viber-bg">
+                        <svg viewBox="0 0 24 24"><path d="M9.89 2.052c4.807-.463 9.405 2.585 10.158 7.394.342 2.185.048 4.3-.923 6.223-.19.378-.456.467-.803.226-.307-.212-.303-.507-.156-.816.75-1.579.97-3.252.684-4.992-.614-3.738-3.879-6.395-7.666-6.002-1.844.192-3.418.99-4.708 2.336-.264.275-.521.258-.755-.03-.223-.275-.2-.553.07-.841C7.147 4.14 8.47 3.01 9.89 2.052zm-1.823 4.17c3.19-.508 6.37 1.34 7.027 4.542.27 1.314.116 2.576-.439 3.76-.176.375-.444.426-.74.196-.282-.218-.261-.502-.12-.782.41-.818.513-1.691.316-2.593-.45-2.072-2.369-3.284-4.444-2.871-.786.156-1.442.545-2.001 1.116-.277.283-.538.286-.777-.015-.224-.282-.19-.56-.095-.25 1.002-1.026 2.17-1.745 3.183-2.494zm3.923 6.942c.026-.59.183-1.127.608-1.543.51-.5 1.135-.615 1.777-.384.664.238.868.749.626 1.442-.239.684-.664 1.23-1.328 1.543-.539.255-1.082.164-1.543-.22-.112-.093-.14-.233-.14-.378zm3.626 5.864c-.496.11-.937-.099-1.285-.455-1.059-1.082-2.128-2.155-3.176-3.243-.16-.165-.333-.217-.557-.145-.632.203-1.23.14-1.794-.238-1.464-.982-2.607-2.274-3.518-3.793-.46-.767-.58-1.597-.184-2.428.093-.195.074-.356-.062-.51C2.535 7.42 1.956 6.786 1.385 6.14c-.38-.43-.377-.923.013-1.32 1.045-1.065 2.102-2.12 3.167-3.167.35-.344.815-.365 1.173-.049.57.502 1.117 1.03 1.674 1.546.195.18.252.378.14.63-.3.682-.294 1.378.077 2.052.126.228.324.364.577.466 1.252.502 2.375 1.218 3.327 2.176 1.026 1.032 1.8 2.247 2.327 3.606.096.248.243.435.474.55.666.331 1.328.277 1.968-.07.27-.146.47-.094.669.13.56.611 1.143 1.196 1.706 1.802.348.375.348.847-.01 1.205-1.068 1.066-2.138 2.13-3.21 3.19-.344.341-.774.453-1.246.337zm-6.208-4.7c.365-.01.594.161.64.475.05.341-.122.597-.482.637-.624.068-1.129-.12-1.5-.644-.226-.319-.181-.6.109-.815.289-.214.568-.168.795.122.125.161.258.217.438.225z"/></svg></div>
+                    <span>Viber</span>
+                </a>
+
+                <!-- Кнопка X (Twitter) -->
+                <a id="share-x" href="#" target="_blank" class="share-item">
+                    <div class="share-icon x-bg"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+                    <span>X</span>
+                </a>
+
+                <!-- Кнопка VK -->
+                <a id="share-vk" href="#" target="_blank" class="share-item">
+                    <div class="share-icon vk-bg"><svg viewBox="0 0 24 24"><path d="M15.029 24c-5.83 0-9.917-4.004-14.152-12.443C-.067 9.774.7 7.5 2.923 7.5h2.825c1.65 0 2.2.875 2.62 1.874 1.626 3.864 4.417 8.163 4.417 8.163.525.875.76.626.76-.002V8.998c-.126-1.503-.997-1.503-1.628-1.503h-.9c-.43 0-.67-.282-.43-.63C11.134 5.96 12.986 5 15.65 5c3.275 0 4.15 1.054 4.15 3.327v5.6c0 1.15 Jews 1.35 1.035 1.625-2.25 4.316-7.075 4.316-7.075.4-2.575-1.782h2.825c1.875 0 2.275.925 1.875 2.25-1.075 2.65-6.05 11.2-6.05 11.2-.55.975-1.325 1.5-2.225 1.5h-3.187z"/></svg></div>
+                    <span>VK</span>
+                </a>
+
             </div>
         </div>
     </div>
     <footer>&copy; 2026 СЛУШАТЕЛЬ.онлайн. Все права защищены.</footer>
-    <script src="https://cloudflare.com"></script>
     <script>
         let selectedTariffText = 'Супер-короткий звонок (3 минуты) за 3 USD'; 
         const siteUrl = window.location.origin + window.location.pathname;
         const shareText = "СЛУШАТЕЛЬ.онлайн — Сервис конфиденциальной поддержки. Иногда нужно просто выговориться.";
 
         window.addEventListener('DOMContentLoaded', () => {
-            new QRCode(document.getElementById("qrcode"), {
-                text: siteUrl,
-                width: 140,
-                height: 140,
-                colorDark: "#020617",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            
+            // Динамическая установка корректных путей шеринга в модальном окне
             document.getElementById('share-tg').href = `https://t.me{encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`;
             document.getElementById('share-wa').href = `https://whatsapp.com{encodeURIComponent(shareText + ' ' + siteUrl)}`;
             document.getElementById('share-viber').href = `viber://forward?text=${encodeURIComponent(shareText + ' ' + siteUrl)}`;
@@ -837,21 +251,25 @@ document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(si
 
         function selectTariff(tariffId, tariffText) {
             ['t1', 't2', 't3', 't4', 't5', 't6'].forEach(id => {
-                document.getElementById(id).classList.remove('active', 'thunder');
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('active', 'thunder');
             });
             selectedTariffText = tariffText;
             const element = document.getElementById(tariffId);
-            if (tariffId === 't6') {
-                element.classList.add('active', 'thunder');
-            } else {
-                element.classList.add('active');
+            if (element) {
+                if (tariffId === 't6') {
+                    element.classList.add('active', 'thunder');
+                } else {
+                    element.classList.add('active');
+                }
             }
-            document.getElementById('radio-' + tariffId).checked = true;
+            const radio = document.getElementById('radio-' + tariffId);
+            if (radio) radio.checked = true;
         }
 
         function redirectToTelegram() {
             const message = "Здравствуйте! Я хочу заказать сессию. Выбранный тариф: " + selectedTariffText;
-            const telegramUrl = "https://t.me"; 
+            const telegramUrl = "https://t.me"; // Вставьте сюда ник вашего бота/аккаунта
             
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(message).then(() => {
@@ -873,6 +291,7 @@ document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(si
 
         function sendMessageToSmartAI() {
             const input = document.getElementById('chatInput');
+            if (!input) return;
             const text = input.value.trim();
             if (!text) return;
 
@@ -898,6 +317,7 @@ document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(si
 
         function appendMessage(text, sender) {
             const chatMessages = document.getElementById('chatMessages');
+            if (!chatMessages) return;
             const msgDiv = document.createElement('div');
             msgDiv.className = "msg " + sender;
             msgDiv.style = sender === 'user' 
@@ -911,7 +331,7 @@ document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(si
         function generateLocalAIResponse(input) {
             const query = input.toLowerCase();
             if (query.includes('час') || query.includes('60 мин') || query.includes('длинн') || query.includes('дольше')) {
-                return "Да, вы можете заказать сессию на 1 час или even дольше. На сайте указаны базовые тарифы до 30 минут, но индивидуальное время мы легко согласуем. Перейдите в Telegram, и мы подберем удобный для вас слот.";
+                return "Да, вы можете заказать сессию на 1 час или даже дольше. На сайте указаны базовые тарифы до 30 минут, но индивидуальное время мы легко согласуем. Перейдите в Telegram, и мы подберем удобный для вас слот.";
             }
             if (query.includes('тариф') || query.includes('цен') || query.includes('сколько стоит') || query.includes('стоимость') || query.includes('деньг') || query.includes('плат')) {
                 return "У нас действуют гибкие тарифы: от коротких звонков по 3, 5, 10 и 15 минут до полноценных сессий на 30 минут. Также есть специальный тариф «Громоотвод» за 50 USD. Выбирайте любой прямо на странице!";
@@ -967,8 +387,7 @@ document.getElementById('share-vk').href = `https://vk.com{encodeURIComponent(si
                         btn.textContent = 'Успешно скопировано! ✓';
                         btn.style.backgroundColor = '#10b981';
                         setTimeout(() => { 
-                            btn.textContent = '🔗 Копировать ссылку'; 
-                            btn.style.backgroundColor = '#818cf8';
+                            btn.textContent = '🔗 Копировать ссылку на сайт'; 
                             btn.style.backgroundColor = '#818cf8';
                         }, 2000);
                     }
